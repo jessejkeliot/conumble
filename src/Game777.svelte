@@ -8,7 +8,7 @@
     decrement: 1,
   };
   let count: number = startValue;
-  let tryMap = initialTryMap
+  let tryMap = {...initialTryMap};
   // 0 is failed, 2 is in session, 1 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
   let attemptsLeft = 7;
@@ -33,7 +33,7 @@
   const handleTryAgain = () => {
     attemptsLeft--;
     count = startValue;
-    tryMap = initialTryMap;
+    tryMap = { ...initialTryMap};
   }
 
   $: operationButtons = [
@@ -66,7 +66,7 @@
 
 <h2> Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {answer}</h2>
-
+<!-- add a state thing for the games state. This will make it so that once a user has won they can no longer press buttons even if there are operation hits left -->
 
 {#if (count==answer)}
     <h3>You Won!</h3>
