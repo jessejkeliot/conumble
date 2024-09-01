@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Card from './Card.svelte'
+  import Game777 from './Game777.svelte'
 </script>
 
-<Card />
+<Game777 />
 
 <style>
   .logo {
