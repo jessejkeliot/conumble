@@ -7,6 +7,7 @@
     increment: 3,
     decrement: 1,
   };
+  $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
   const handleSquare = () => {
     count = count * count;
     tryMap.square--;
@@ -53,6 +54,15 @@
   ];
 </script>
 
+<h2>🎯 {answer}</h2>
+
+
+{#if (count==answer)}
+    <h3>You Won!</h3>
+{:else if (operationsLeft==0 && count!=answer)}
+    <h3>You Failed!</h3>
+{/if}   
+<p>Operations Left: {operationsLeft}</p>
 <h1>{count}</h1>
 
 <!-- <button on:click={handleSquare}>Square: {tryMap.square}</button>
