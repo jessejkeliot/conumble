@@ -1,13 +1,17 @@
 <script lang="ts">
   const answer: number = 33;
-  let count: number = 1;
-  let tryMap = {
+  const startValue: number = 1;
+  const initialTryMap = {
     square: 1,
     double: 2,
     increment: 3,
     decrement: 1,
   };
+  let count: number = startValue;
+  let tryMap = initialTryMap
+  // 0 is failed, 2 is in session, 1 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
+  let attemptsLeft = 7;
   const handleSquare = () => {
     count = count * count;
     tryMap.square--;
@@ -25,6 +29,12 @@
     count--;
     tryMap.decrement--;
   };
+
+  const handleTryAgain = () => {
+    attemptsLeft--;
+    count = startValue;
+    tryMap = initialTryMap;
+  }
 
   $: operationButtons = [
     {
@@ -54,6 +64,7 @@
   ];
 </script>
 
+<h2> Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {answer}</h2>
 
 
@@ -61,6 +72,11 @@
     <h3>You Won!</h3>
 {:else if (operationsLeft==0 && count!=answer)}
     <h3>You Failed!</h3>
+    {#if (attemptsLeft != 0 )}
+      <button on:click={handleTryAgain}>Try Again?</button>
+    {:else}
+      <h3>Try Again... Tomorrow!</h3>
+    {/if} 
 {/if}   
 <p>Operations Left: {operationsLeft}</p>
 <h1>{count}</h1>
