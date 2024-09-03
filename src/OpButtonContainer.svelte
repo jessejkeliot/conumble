@@ -48,9 +48,9 @@
   }
   button {
     min-width: 7em;
+    user-select: none;
   }
-  .tapped {
+  /* .tapped {
     background-color: #0056b3 !important; /* Color when button is pressed */
-  }
 
 </style>

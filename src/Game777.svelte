@@ -1,5 +1,6 @@
 <script lang="ts">
   import OpButtonContainer from "./OpButtonContainer.svelte";
+  import './lib/colors.css';
   const targetValue: number = 197;
   const startValue: number = 1;
   const initialTryMap = {

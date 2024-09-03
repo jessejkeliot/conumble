@@ -1,0 +1,10 @@
+:root {
+  --color-disabled: #b0b0b0;
+  --color-hovered: #3399ff;
+  --color-congratulatory: #4caf50;
+  --color-cautionary: #ff9800;
+  --color-failed: #E9210A;
+  --color-background: #f5f5f5;
+  --color-text: #333; /* Default text color */
+  --color-text-disabled: #777; /* Text color for disabled buttons */
+}
