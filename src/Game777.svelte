@@ -1,6 +1,6 @@
 <script lang="ts">
   import OpButtonContainer from "./OpButtonContainer.svelte";
-  const answer: number = 197;
+  const targetValue: number = 197;
   const startValue: number = 1;
   const initialTryMap = {
     square: 3,
@@ -10,9 +10,11 @@
   };
   let count: number = startValue;
   let tryMap = {...initialTryMap};
-  // 0 is failed, 2 is in session, 1 is won
+  let attemptsLeft = 2;
+  let gameState;
+  // 0 is failed completely 1 is failed one attempt, 3 is in session, 4 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
-  let attemptsLeft = 7;
+  $: count==targetValue ? gameState = 1: (operationsLeft==0 ? (attemptsLeft==0 ? gameState = 0 : gameState = 1) : gameState=3);
   const handleSquare = () => {
     count = count * count;
     tryMap.square--;
@@ -70,12 +72,12 @@
 </script>
 
 <h2> Attempts Left: {attemptsLeft}</h2>
-<h2>🎯 {answer}</h2>
+<h2>🎯 {targetValue}</h2>
 <!-- add a state thing for the games state. This will make it so that once a user has won they can no longer press buttons even if there are operation hits left -->
 
-{#if (count==answer)}
+{#if (count==targetValue)}
     <h3>You Won!</h3>
-{:else if (operationsLeft==0 && count!=answer)}
+{:else if (operationsLeft==0 && count!=targetValue)}
     <h3>You Failed!</h3>
     {#if (attemptsLeft != 0 )}
       <button on:click={handleTryAgain}><p>Retry?</p></button>
