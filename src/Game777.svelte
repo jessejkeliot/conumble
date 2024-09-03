@@ -1,11 +1,11 @@
 <script lang="ts">
-  const answer: number = 165;
-  const startValue: number = 4;
+  const answer: number = 197;
+  const startValue: number = 1;
   const initialTryMap = {
-    square: 5,
-    double: 5,
-    increment: 3,
-    decrement: 5,
+    square: 3,
+    double: 1,
+    increment: 1,
+    decrement: 2,
   };
   let count: number = startValue;
   let tryMap = {...initialTryMap};
