@@ -49,6 +49,7 @@ h1 {
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  width: 2fr;
 }
 
 @media screen and (max-width: 768px) {
@@ -57,7 +58,7 @@ h1 {
   }
 }
 .grid-item {
-  min-width: 200px;
+  min-width: 7em;
 }
 
 button {

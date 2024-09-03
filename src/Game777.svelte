@@ -1,4 +1,5 @@
 <script lang="ts">
+  import OpButtonContainer from "./OpButtonContainer.svelte";
   const answer: number = 197;
   const startValue: number = 1;
   const initialTryMap = {
@@ -89,13 +90,15 @@
 <button on:click={handleIncrement}>Add 1: {tryMap.increment}</button>
 <button on:click={handleDecrement}>Subtract 1: {tryMap.decrement}</button>
 <button on:click={handleDouble}>Double: {tryMap.double}</button> -->
-
+<!-- <div class="container">
 {#each operationButtons as button}
-  <button disabled={!button.display} on:click={button.operation}
+  <button class="grid-item" disabled={!button.display} on:click={button.operation}
     ><p>{button.label}: {button.tries}</p></button
   >
 {/each}
+</div> -->
 
+<OpButtonContainer {operationButtons}></OpButtonContainer>
 <!-- The game should be: Computer generates random starting number between 2 and 7, 
  it will then perform 7 operations on it which will be recorded
  the final number must not be above 777. (generator will keep going round until the number is created)
