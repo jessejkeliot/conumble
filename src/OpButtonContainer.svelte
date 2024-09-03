@@ -42,7 +42,7 @@
     button {
       transition: all 0.05s;
     }
-    button:active {
+    button:active:enabled {
       background-color: #66cdaa;
     }
   }
