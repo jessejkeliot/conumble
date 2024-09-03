@@ -9,12 +9,22 @@
     decrement: 2,
   };
   let count: number = startValue;
-  let tryMap = {...initialTryMap};
+  let tryMap = { ...initialTryMap };
   let attemptsLeft = 2;
-  let gameState;
+  let gameState = 0;
   // 0 is failed completely 1 is failed one attempt, 3 is in session, 4 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
-  $: count==targetValue ? gameState = 1: (operationsLeft==0 ? (attemptsLeft==0 ? gameState = 0 : gameState = 1) : gameState=3);
+  $: count == targetValue
+    ? (gameState = 3) //won
+    : operationsLeft == 0
+      ? attemptsLeft == 0
+        ? (gameState = 0) //totally lost
+        : (gameState = 1) //attempt lost
+      : (gameState = 2); //in play
+  //colour of the count
+  const eventColours = ["#E9210A", "#FF6700", "#FFFFFF", "#22DB31",];
+  $: countColour = eventColours[gameState];
+  // const countColour = eventColours[0];
   const handleSquare = () => {
     count = count * count;
     tryMap.square--;
@@ -36,8 +46,8 @@
   const handleTryAgain = () => {
     attemptsLeft--;
     count = startValue;
-    tryMap = { ...initialTryMap};
-  }
+    tryMap = { ...initialTryMap };
+  };
 
   $: operationButtons = [
     {
@@ -71,22 +81,24 @@
   ];
 </script>
 
-<h2> Attempts Left: {attemptsLeft}</h2>
+<h2>Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {targetValue}</h2>
 <!-- add a state thing for the games state. This will make it so that once a user has won they can no longer press buttons even if there are operation hits left -->
 
-{#if (count==targetValue)}
-    <h3>You Won!</h3>
-{:else if (operationsLeft==0 && count!=targetValue)}
-    <h3>You Failed!</h3>
-    {#if (attemptsLeft != 0 )}
-      <button on:click={handleTryAgain}><p>Retry?</p></button>
-    {:else}
-      <h3>Try Again... Tomorrow!</h3>
-    {/if} 
-{/if}   
+
+
+{#if count == targetValue}
+  <h3>You Won!</h3>
+{:else if operationsLeft == 0 && count != targetValue}
+  <h3>You Failed!</h3>
+  {#if attemptsLeft != 0}
+    <button on:click={handleTryAgain}><p>Retry?</p></button>
+  {:else}
+    <h3>Try Again... Tomorrow!</h3>
+  {/if}
+{/if}
 <!-- <p>Operations Left: {operationsLeft}</p> -->
-<h1>{count}</h1>
+<h1 style="color: {countColour};">{count}</h1>
 
 <!-- <button on:click={handleSquare}>Square: {tryMap.square}</button>
 <button on:click={handleIncrement}>Add 1: {tryMap.increment}</button>
