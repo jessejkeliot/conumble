@@ -39,24 +39,28 @@
   $: operationButtons = [
     {
       name: "square",
+      label: "⬜",
       operation: handleSquare,
       tries: tryMap.square,
       display: tryMap.square != 0,
     },
     {
       name: "double",
+      label: "*2",
       operation: handleDouble,
       tries: tryMap.double,
       display: tryMap.double != 0,
     },
     {
       name: "increment",
+      label: "+1",
       operation: handleIncrement,
       tries: tryMap.increment,
       display: tryMap.increment != 0,
     },
     {
       name: "decrement",
+      label: "-1",
       operation: handleDecrement,
       tries: tryMap.decrement,
       display: tryMap.decrement != 0,
@@ -73,12 +77,12 @@
 {:else if (operationsLeft==0 && count!=answer)}
     <h3>You Failed!</h3>
     {#if (attemptsLeft != 0 )}
-      <button on:click={handleTryAgain}>Try Again?</button>
+      <button on:click={handleTryAgain}><p>Retry?</p></button>
     {:else}
       <h3>Try Again... Tomorrow!</h3>
     {/if} 
 {/if}   
-<p>Operations Left: {operationsLeft}</p>
+<!-- <p>Operations Left: {operationsLeft}</p> -->
 <h1>{count}</h1>
 
 <!-- <button on:click={handleSquare}>Square: {tryMap.square}</button>
@@ -88,7 +92,7 @@
 
 {#each operationButtons as button}
   <button disabled={!button.display} on:click={button.operation}
-    >{button.name}: {button.tries}</button
+    ><p>{button.label}: {button.tries}</p></button
   >
 {/each}
 
