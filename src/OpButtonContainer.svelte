@@ -13,7 +13,6 @@
     tappedButton = -1;
   }
 </script>
-
 <div class="container">
   {#each operationButtons as button, index}
     <button
@@ -33,6 +32,7 @@
     grid-template-columns: repeat(4, 1fr);
     width: 2fr;
     user-select: none;
+    pointer-events: relative;
   }
 
   @media screen and (max-width: 768px) {

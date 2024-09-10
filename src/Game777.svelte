@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Question } from "./types";
+  import OpButtonContainer from "./OpButtonContainer.svelte";
   export let todaysQuestion: Question;
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
@@ -8,7 +9,7 @@
   let tryMap = { ...initialTryMap };
   let attemptsLeft = 2;
   let gameState = 0;
-  // 0 is failed completely 1 is failed one attempt, 3 is in session, 4 is won
+  // 0 is failed completely 1 is failed one attempt, 2 is in session, 3 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
   $: count == answer
     ? (gameState = 3) //won
@@ -18,7 +19,7 @@
         : (gameState = 1) //attempt lost
       : (gameState = 2); //in play
   //colour of the count
-  const eventColours = ["#E9210A", "#FF6700", "#FFFFFF", "#22DB31",];
+  const eventColours = ["#E9210A", "#FF6700", "#FFFFFF", "#22DB31"];
   $: countColour = eventColours[gameState];
   // const countColour = eventColours[0];
   const handleSquare = () => {
@@ -42,8 +43,8 @@
   const handleTryAgain = () => {
     attemptsLeft--;
     count = startValue;
-    tryMap = { ...initialTryMap};
-  }
+    tryMap = { ...initialTryMap };
+  };
 
   $: operationButtons = [
     {
@@ -77,34 +78,26 @@
   ];
 </script>
 
-<h2> Attempts Left: {attemptsLeft}</h2>
-<h2>🎯 {answer}</h2>
-<!-- add a state thing for the games state. This will make it so that once a user has won they can no longer press buttons even if there are operation hits left -->
+{#if gameState == 3}
+  <!-- Where the results pop up will show -->
+{:else if gameState == 2}
+  <!-- replace with in session component? -->
+  <h2>Attempts Left: {attemptsLeft}</h2>
+  <h2>🎯 {answer}</h2>
+  <p>Operations Left: {operationsLeft}</p>
+  <h1 style="color: {countColour};">{count}</h1>
+{:else if gameState == 1}
+  <button on:click={handleTryAgain}>Try Again?</button>
+{:else if gameState == 0}
+<h2>Try Again Tomorrow...</h2>
+{/if}
 
-{#if (count==answer)}
-    <h3>You Won!</h3>
-{:else if (operationsLeft==0 && count!=answer)}
-    <h3>You Failed!</h3>
-    {#if (attemptsLeft != 0 )}
-      <button on:click={handleTryAgain}>Try Again?</button>
-    {:else}
-      <h3>Try Again... Tomorrow!</h3>
-    {/if} 
-{/if}   
-<p>Operations Left: {operationsLeft}</p>
-<h1>{count}</h1>
 
 <!-- <button on:click={handleSquare}>Square: {tryMap.square}</button>
 <button on:click={handleIncrement}>Add 1: {tryMap.increment}</button>
 <button on:click={handleDecrement}>Subtract 1: {tryMap.decrement}</button>
 <button on:click={handleDouble}>Double: {tryMap.double}</button> -->
-<div class="container">
-{#each operationButtons as button}
-  <button class ="griditem" disabled={!button.display} on:click={button.operation}
-    >{button.label}: {button.tries}</button
-  >
-{/each}
-</div>
+<OpButtonContainer {operationButtons}/>
 
 <!-- The game should be: Computer generates random starting number between 2 and 7, 
  it will then perform 7 operations on it which will be recorded
