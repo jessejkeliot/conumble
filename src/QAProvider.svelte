@@ -4,12 +4,12 @@
   import { readable } from "svelte/store";
   import { onMount } from "svelte";
   import { currentQuestion } from "./stores";
-  import Game from './Game.svelte';
+  import Game777 from './Game777.svelte';
   let questions : Question[] = [];
   let todaysQuestion: Question | null = null;
   // Fetch the JSON data on component mount
   async function loadQuestions() {
-    const response = await fetch('./assets/questions.json');
+    const response = await fetch('/questions.json');
     questions = await response.json();
     selectTodaysQuestion();
   }
@@ -19,7 +19,17 @@
     const dayOfYear: number = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (100*60*60*24));
     const index = dayOfYear % questions.length; // Ensures it wraps around when reaching the end
     //todaysQuestion = questions[index];
-    todaysQuestion = {}
+    console.log(questions[index].startValue);
+    todaysQuestion = {
+    "startValue": 7,
+    "targetValue": 198,
+    "tryMap": {
+      "Square": 1,
+      "Double": 2,
+      "Increment": 2,
+      "Decrement": 2
+    }
+  };
   }
   // const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   // const firstDate = new Date(2024, 8, 10);

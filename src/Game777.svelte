@@ -3,7 +3,6 @@
   export let todaysQuestion: Question;
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
-
   const initialTryMap = todaysQuestion.tryMap;
   let count: number = startValue;
   let tryMap = { ...initialTryMap };
