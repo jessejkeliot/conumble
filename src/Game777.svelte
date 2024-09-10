@@ -2,13 +2,14 @@
   import type { Question } from "./types";
   import OpButtonContainer from "./OpButtonContainer.svelte";
   import FinishedPopup from "./FinishedPopup.svelte";
+  import { fade } from "svelte/transition";
   export let todaysQuestion: Question;
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
   const initialTryMap = todaysQuestion.tryMap;
   let count: number = startValue;
   let tryMap = { ...initialTryMap };
-  let attemptsLeft = 2;
+  let attemptsLeft = 0;
   let gameState = 0;
   // 0 is failed completely 1 is failed one attempt, 2 is in session, 3 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
@@ -79,25 +80,29 @@
     },
   ];
 </script>
-<FinishedPopup />
+<div class="gamenotifcontainer">
+  {#if gameState==3 || gameState==0}
+    <!-- Where the results pop up will show -->
+    <FinishedPopup open={true} {gameState} {attemptsLeft}/>
+  {/if}
+</div>
 <button disabled={!retryEnabled} on:click={handleTryAgain}><p>🔄</p></button>
 <h2>Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {answer}</h2>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->
 <!-- <p>Operations Left: {operationsLeft}</p> -->
 <h1 style="color: {countColour};">{count}</h1> 
-<div class="gamenotifcontainer">
-  {#if gameState == 3}
-    <!-- Where the results pop up will show -->
-     <FinishedPopup />
-  {:else if gameState == 0}
-    <h2>Try Again Tomorrow...</h2>
-  {/if}
-</div>
 
 
 <OpButtonContainer {operationButtons} />
 
+
+<style>
+  .gamenotifcontainer {
+    display: flex;
+    justify-content: center; /* Aligns items horizontally to the center */
+}
+</style>
 <!-- The game should be: Computer generates random starting number between 2 and 7, 
  it will then perform 7 operations on it which will be recorded
  the final number must not be above 777. (generator will keep going round until the number is created)
