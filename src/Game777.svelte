@@ -79,6 +79,7 @@
     },
   ];
 </script>
+<FinishedPopup />
 <button disabled={!retryEnabled} on:click={handleTryAgain}><p>🔄</p></button>
 <h2>Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {answer}</h2>
@@ -93,6 +94,7 @@
     <h2>Try Again Tomorrow...</h2>
   {/if}
 </div>
+
 
 <OpButtonContainer {operationButtons} />
 
