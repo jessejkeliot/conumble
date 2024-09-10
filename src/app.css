@@ -51,14 +51,15 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  width: auto;
+  padding: 1em 1.2em;
   max-width: 30%;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  margin: 0.3em;
+  margin: 0.4em;
   transition: all 0.4s;
   color: white;
 }

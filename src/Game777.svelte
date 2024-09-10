@@ -86,7 +86,7 @@
     <FinishedPopup open={true} {gameState} {attemptsLeft}/>
   {/if}
 </div>
-<button disabled={!retryEnabled} on:click={handleTryAgain}><p>🔄</p></button>
+<button disabled={!retryEnabled} on:click={handleTryAgain} style={"font-size: 20px;"}><p>🔄</p></button>
 <h2>Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {answer}</h2>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->

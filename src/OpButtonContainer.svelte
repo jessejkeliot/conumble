@@ -30,12 +30,12 @@
   .container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 2fr;
     user-select: none;
     pointer-events: relative;
+    /* margin-bottom: 3em; */
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 550px) {
     .container {
       grid-template-columns: repeat(2, 1fr);
     }
