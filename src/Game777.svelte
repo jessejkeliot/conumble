@@ -87,7 +87,7 @@
   <p>Operations Left: {operationsLeft}</p>
   <h1 style="color: {countColour};">{count}</h1>
 {:else if gameState == 1}
-  <button on:click={handleTryAgain}>Try Again?</button>
+  <button on:click={handleTryAgain}>Retry</button>
 {:else if gameState == 0}
 <h2>Try Again Tomorrow...</h2>
 {/if}
