@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Question } from "./types";
   import OpButtonContainer from "./OpButtonContainer.svelte";
+  import FinishedPopup from "./FinishedPopup.svelte";
   export let todaysQuestion: Question;
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
@@ -11,6 +12,7 @@
   let gameState = 0;
   // 0 is failed completely 1 is failed one attempt, 2 is in session, 3 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
+  $: retryEnabled = attemptsLeft != 0;
   $: count == answer
     ? (gameState = 3) //won
     : operationsLeft == 0
@@ -77,28 +79,22 @@
     },
   ];
 </script>
-
+<button disabled={!retryEnabled} on:click={handleTryAgain}><p>🔄</p></button>
+<h2>Attempts Left: {attemptsLeft}</h2>
+<h2>🎯 {answer}</h2>
+<!-- When your count goes orange, the target should flash bold and then the count reset -->
+<!-- <p>Operations Left: {operationsLeft}</p> -->
+<h1 style="color: {countColour};">{count}</h1> 
 <div class="gamenotifcontainer">
-{#if gameState == 3}
-  <!-- Where the results pop up will show -->
-{:else if gameState == 2}
-  <!-- replace with in session component? -->
-  <h2>Attempts Left: {attemptsLeft}</h2>
-  <h2>🎯 {answer}</h2>
-  <p>Operations Left: {operationsLeft}</p>
-  <h1 style="color: {countColour};">{count}</h1>
-{:else if gameState == 1}
-  <button on:click={handleTryAgain}>Retry</button>
-{:else if gameState == 0}
-<h2>Try Again Tomorrow...</h2>
-{/if}
+  {#if gameState == 3}
+    <!-- Where the results pop up will show -->
+     <FinishedPopup />
+  {:else if gameState == 0}
+    <h2>Try Again Tomorrow...</h2>
+  {/if}
 </div>
 
-<!-- <button on:click={handleSquare}>Square: {tryMap.square}</button>
-<button on:click={handleIncrement}>Add 1: {tryMap.increment}</button>
-<button on:click={handleDecrement}>Subtract 1: {tryMap.decrement}</button>
-<button on:click={handleDouble}>Double: {tryMap.double}</button> -->
-<OpButtonContainer {operationButtons}/>
+<OpButtonContainer {operationButtons} />
 
 <!-- The game should be: Computer generates random starting number between 2 and 7, 
  it will then perform 7 operations on it which will be recorded
