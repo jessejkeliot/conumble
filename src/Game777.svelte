@@ -48,24 +48,28 @@
   $: operationButtons = [
     {
       name: "Square",
+      label: "⏹️",
       operation: handleSquare,
       tries: tryMap.Square,
       display: tryMap.Square != 0,
     },
     {
       name: "Double",
+      label: "x2",
       operation: handleDouble,
       tries: tryMap.Double,
       display: tryMap.Double != 0,
     },
     {
       name: "Increment",
+      label: "+1",
       operation: handleIncrement,
       tries: tryMap.Increment,
       display: tryMap.Increment != 0,
     },
     {
       name: "Decrement",
+      label: "-1",
       operation: handleDecrement,
       tries: tryMap.Decrement,
       display: tryMap.Decrement != 0,
@@ -97,7 +101,7 @@
 <div class="container">
 {#each operationButtons as button}
   <button class ="griditem" disabled={!button.display} on:click={button.operation}
-    >{button.name}: {button.tries}</button
+    >{button.label}: {button.tries}</button
   >
 {/each}
 </div>
