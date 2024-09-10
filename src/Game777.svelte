@@ -78,6 +78,7 @@
   ];
 </script>
 
+<div class="gamenotifcontainer">
 {#if gameState == 3}
   <!-- Where the results pop up will show -->
 {:else if gameState == 2}
@@ -91,7 +92,7 @@
 {:else if gameState == 0}
 <h2>Try Again Tomorrow...</h2>
 {/if}
-
+</div>
 
 <!-- <button on:click={handleSquare}>Square: {tryMap.square}</button>
 <button on:click={handleIncrement}>Add 1: {tryMap.increment}</button>
