@@ -34,7 +34,7 @@
   .gridcontainer {
     z-index: 1;
     position: absolute;
-    width: 40%;
+    width: 45%;
     height: 80%;
     background-color: slategrey;
     display: grid;
