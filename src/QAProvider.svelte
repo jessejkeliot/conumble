@@ -21,13 +21,13 @@
     //todaysQuestion = questions[index];
     console.log(questions[index].startValue);
     todaysQuestion = {
-    "startValue": 7,
-    "targetValue": 198,
+    "startValue": 3,
+    "targetValue": 45,
     "tryMap": {
       "Square": 1,
       "Double": 2,
-      "Increment": 2,
-      "Decrement": 2
+      "Increment": 3,
+      "Decrement": 1
     }
   };
   }

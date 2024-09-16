@@ -9,7 +9,7 @@
   const initialTryMap = todaysQuestion.tryMap;
   let count: number = startValue;
   let tryMap = { ...initialTryMap };
-  let attemptsLeft = 0;
+  let attemptsLeft = 3;
   let gameState = 0;
   // 0 is failed completely 1 is failed one attempt, 2 is in session, 3 is won
   $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
@@ -83,12 +83,12 @@
 <div class="gamenotifcontainer">
   {#if gameState==3 || gameState==0}
     <!-- Where the results pop up will show -->
-    <FinishedPopup open={true} {gameState} {attemptsLeft}/>
+    <FinishedPopup open={false} {gameState} {attemptsLeft}/>
   {/if}
 </div>
-<button disabled={!retryEnabled} on:click={handleTryAgain} style={"font-size: 20px;"}><p>🔄</p></button>
 <h2>Attempts Left: {attemptsLeft}</h2>
 <h2>🎯 {answer}</h2>
+<button disabled={!retryEnabled} on:click={handleTryAgain} style={"font-size: 20px;"}><p>🔄</p></button>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->
 <!-- <p>Operations Left: {operationsLeft}</p> -->
 <h1 style="color: {countColour};">{count}</h1> 
