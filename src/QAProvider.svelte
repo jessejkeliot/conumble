@@ -20,6 +20,7 @@
     const index = dayOfYear % questions.length; // Ensures it wraps around when reaching the end
     //todaysQuestion = questions[index];
     console.log(questions[index].startValue);
+    console.log(index);
     todaysQuestion = {
     "startValue": 3,
     "targetValue": 45,
@@ -30,6 +31,7 @@
       "Decrement": 1
     }
   };
+    todaysQuestion = questions[index];
   }
   // const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   // const firstDate = new Date(2024, 8, 10);
