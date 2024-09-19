@@ -1,0 +1,2 @@
+<!-- We want a help option in the corner. Title in the middle. And a settings slash accordion in the other corner -->
+ <!-- settings could have : hint mode, give up  button, daily stats/leaderboard -->

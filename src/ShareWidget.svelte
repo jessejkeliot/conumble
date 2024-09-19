@@ -11,7 +11,7 @@
 
 <!-- <button on:click={handleClick}>Share</button> -->
 <div class="ShareButtonContainer" on:click={handleClick}>
-  <h3 bind:this={me} id="shareText">Share 📤</h3>
+  <h3 bind:this={me} id="shareText">share 📤</h3>
 </div>
 
 <style>
@@ -20,7 +20,7 @@
   div {
     height: 50%;
     width: 63%;
-    background-color: cyan;
+    background-color: rgb(0, 197, 197);
     margin: 0;
     position: absolute;
     top: 50%;

@@ -4,6 +4,7 @@
   import FinishedPopup from "./FinishedPopup.svelte";
   import { fade, fly } from "svelte/transition";
   export let todaysQuestion: Question;
+  export let questionIndex: number | null;
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
   const initialButtonUsesMap = todaysQuestion.tryMap;
@@ -108,6 +109,7 @@
       {gameState}
       attemptsLeft={attemptsUsed}
       {userInputMap}
+      {questionIndex}
     />
   </div>
 {/if}

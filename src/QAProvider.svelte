@@ -5,8 +5,10 @@
   import { onMount } from "svelte";
   import { currentQuestion } from "./stores";
   import Game777 from './Game777.svelte';
+  import { getTimeFromFirstConumble} from './timeFunction.js'
   let questions : Question[] = [];
   let todaysQuestion: Question | null = null;
+  let index: number | null = null;
   // Fetch the JSON data on component mount
   async function loadQuestions() {
     const response = await fetch('/questions.json');
@@ -15,12 +17,12 @@
   }
 
   function selectTodaysQuestion() {
-    const today: Date = new Date();
-    const dayOfYear: number = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (100*60*60*24));
-    const index = dayOfYear % questions.length; // Ensures it wraps around when reaching the end
+    const timeDiff: number = getTimeFromFirstConumble();
+    index = Math.floor(timeDiff / 864e5); //daily
+    console.log(timeDiff);
     //todaysQuestion = questions[index];
-    console.log(questions[index].startValue);
-    console.log(index);
+    //console.log(questions[index].startValue);
+    //console.log(index);
     todaysQuestion = {
     "startValue": 3,
     "targetValue": 45,
@@ -32,7 +34,6 @@
     }
   };
     todaysQuestion = questions[index];
-    todaysQuestion = questions[18];
   }
   // const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   // const firstDate = new Date(2024, 8, 10);
@@ -60,7 +61,7 @@
 
 {#if todaysQuestion}
   <!-- Render the Game component and pass today's question as a prop -->
-  <Game777 {todaysQuestion} />
+  <Game777 {todaysQuestion} questionIndex={index}/>
 {:else}
   <!-- Show a loading message or spinner while the question is being fetched -->
   <p>Loading today's question...</p>
