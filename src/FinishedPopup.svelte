@@ -5,15 +5,16 @@
   export let open;
   export let attemptsLeft;
   export let gameState;
+  export let userInputMap;
 
-  let colours = ["blanchedalmond", "pink", "plum", "paleblue", "royalblue"];
+  let colours = ["blanchedalmond", "pink", "plum", "paleblue", "royalblue"]; 
 </script>
 
 {#if open}
   <div class="gridcontainer">
     <div class="griditem" id="congratulations"><h3>Congrats</h3></div>
     <div class="griditem" id="emojirep" style={"background-color: fuchsia;"}></div>
-    <div class="griditem" id="sharepage"><h3>Share</h3></div>
+    <div class="griditem" id="sharepage"><ShareWidget resultRepresentation={"gamer"}/></div>
     <div class="griditem" id="nextconumble"><h3>next is</h3></div>
   </div>
 {/if}

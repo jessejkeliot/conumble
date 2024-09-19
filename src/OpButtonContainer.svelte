@@ -13,6 +13,7 @@
     tappedButton = -1;
   }
 </script>
+
 <div class="container">
   {#each operationButtons as button, index}
     <button
@@ -20,7 +21,7 @@
       on:click={button.operation}
       on:touchstart={() => handleTouchStart(index)}
       on:touchend={handleTouchEnd}
-      class:tapped={tappedButton === index} 
+      class:tapped={tappedButton === index}
       ><p>{button.label}: {button.tries}</p></button
     >
   {/each}
@@ -33,6 +34,35 @@
     user-select: none;
     pointer-events: relative;
     /* margin-bottom: 3em; */
+  }
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    width: auto;
+    padding: 1em 1.2em;
+    max-width: 30%;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    margin: 0.4em;
+    transition: all 0.4s;
+    color: white;
+  }
+  @media (hover: hover) {
+    button:hover:enabled {
+      background-color: #66cdaa;
+      transform: translateY(-5px);
+    }
+  }
+  button:disabled {
+    background-color: mediumvioletred;
+    text-decoration: line-through;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
   }
 
   @media screen and (max-width: 550px) {
@@ -52,5 +82,4 @@
   }
   /* .tapped {
     background-color: #0056b3 !important; /* Color when button is pressed */
-
 </style>

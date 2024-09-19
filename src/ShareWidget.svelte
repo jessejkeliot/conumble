@@ -5,4 +5,11 @@
 }
 </script>
 
-<button on:click={handleClick}></button>
+<button on:click={handleClick}>Share</button>
+
+<style>
+
+    button {
+        position:fixed ;
+    }
+</style>

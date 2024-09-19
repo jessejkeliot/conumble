@@ -48,35 +48,6 @@ h1 {
   text-align: center;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  width: auto;
-  padding: 1em 1.2em;
-  max-width: 30%;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  margin: 0.4em;
-  transition: all 0.4s;
-  color: white;
-}
-@media (hover: hover) {
-  button:hover:enabled {
-    background-color: #66cdaa;
-    transform: translateY(-5px);
-  }
-}
-button:disabled {
-  background-color: mediumvioletred;
-  text-decoration: line-through;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 p {
   display: inline;
 }

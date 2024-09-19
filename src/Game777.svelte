@@ -103,7 +103,12 @@
     in:fade={{ delay: 800, duration: 500 }}
     out:fade
   >
-    <FinishedPopup open={true} {gameState} attemptsLeft={attemptsUsed} />
+    <FinishedPopup
+      open={true}
+      {gameState}
+      attemptsLeft={attemptsUsed}
+      {userInputMap}
+    />
   </div>
 {/if}
 <h2>Attempts Used: {attemptsUsed}</h2>
@@ -118,6 +123,7 @@
 <h1 style="color: {countColour};">{count}</h1>
 
 <OpButtonContainer {operationButtons} />
+
 <!-- The game should be: Computer generates random starting number between 2 and 7, 
  it will then perform 7 operations on it which will be recorded
  the final number must not be above 777. (generator will keep going round until the number is created)
@@ -135,5 +141,34 @@
   .gamenotifcontainer {
     display: flex;
     justify-content: center; /* Aligns items horizontally to the center */
+  }
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    width: auto;
+    padding: 0.5em 0.6em;
+    max-width: 30%;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    margin: 0.1em;
+    transition: all 0.4s;
+    color: white;
+  }
+  @media (hover: hover) {
+    button:hover:enabled {
+      background-color: #66cdaa;
+      transform: translateY(-5px);
+    }
+  }
+  button:disabled {
+    background-color: mediumvioletred;
+    text-decoration: line-through;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
   }
 </style>
