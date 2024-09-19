@@ -3,6 +3,7 @@
   import OpButtonContainer from "./OpButtonContainer.svelte";
   import FinishedPopup from "./FinishedPopup.svelte";
   import { fade, fly } from "svelte/transition";
+  import TopBar from "./TopBar.svelte";
   export let todaysQuestion: Question;
   export let questionIndex: number | null;
   const answer: number = todaysQuestion.targetValue;
@@ -113,6 +114,7 @@
     />
   </div>
 {/if}
+<TopBar></TopBar>
 <h2>Attempts Used: {attemptsUsed}</h2>
 <h2>🎯 {answer}</h2>
 <button
