@@ -2,22 +2,25 @@
   import type { Question } from "./types";
   import OpButtonContainer from "./OpButtonContainer.svelte";
   import FinishedPopup from "./FinishedPopup.svelte";
-  import { fade } from "svelte/transition";
+  import { fade, fly } from "svelte/transition";
   export let todaysQuestion: Question;
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
-  const initialTryMap = todaysQuestion.tryMap;
+  const initialButtonUsesMap = todaysQuestion.tryMap;
+  const noOfAttempts = 3;
   let count: number = startValue;
-  let tryMap = { ...initialTryMap };
-  let attemptsLeft = 3;
+  let buttonUsesMap = { ...initialButtonUsesMap };
+  let attemptsUsed = 0;
   let gameState = 0;
+  let userInputMap = "";
+  let currentTryUserInputMap = "";
   // 0 is failed completely 1 is failed one attempt, 2 is in session, 3 is won
-  $: operationsLeft = Object.values(tryMap).reduce((a, b) => a + b, 0);
-  $: retryEnabled = attemptsLeft != 0;
+  $: operationsLeft = Object.values(buttonUsesMap).reduce((a, b) => a + b, 0);
+  $: retryEnabled = attemptsUsed != noOfAttempts;
   $: count == answer
     ? (gameState = 3) //won
     : operationsLeft == 0
-      ? attemptsLeft == 0
+      ? attemptsUsed == noOfAttempts
         ? (gameState = 0) //totally lost
         : (gameState = 1) //attempt lost
       : (gameState = 2); //in play
@@ -27,26 +30,38 @@
   // const countColour = eventColours[0];
   const handleSquare = () => {
     count = count * count;
-    tryMap.Square--;
-    tryMap = tryMap;
+    buttonUsesMap.Square--;
+    buttonUsesMap = buttonUsesMap;
+    userInputMap += "^";
+    currentTryUserInputMap += "^";
   };
   const handleDouble = () => {
     count = count * 2;
-    tryMap.Double--;
+    buttonUsesMap.Double--;
+    userInputMap += "2";
+    currentTryUserInputMap += "2";
   };
   const handleIncrement = () => {
     count++;
-    tryMap.Increment--;
+    buttonUsesMap.Increment--;
+    userInputMap += "+";
+    currentTryUserInputMap += "+";
   };
   const handleDecrement = () => {
     count--;
-    tryMap.Decrement--;
+    buttonUsesMap.Decrement--;
+    userInputMap += "-";
+    currentTryUserInputMap += "-";
   };
 
   const handleTryAgain = () => {
-    attemptsLeft--;
-    count = startValue;
-    tryMap = { ...initialTryMap };
+    if (currentTryUserInputMap != "") {
+      attemptsUsed++;
+      count = startValue;
+      buttonUsesMap = { ...initialButtonUsesMap };
+      userInputMap += "r";
+      currentTryUserInputMap = "";
+    }
   };
 
   $: operationButtons = [
@@ -54,55 +69,55 @@
       name: "Square",
       label: "⏹️",
       operation: handleSquare,
-      tries: tryMap.Square,
-      display: tryMap.Square != 0,
+      tries: buttonUsesMap.Square,
+      display: buttonUsesMap.Square != 0,
     },
     {
       name: "Double",
       label: "x2",
       operation: handleDouble,
-      tries: tryMap.Double,
-      display: tryMap.Double != 0,
+      tries: buttonUsesMap.Double,
+      display: buttonUsesMap.Double != 0,
     },
     {
       name: "Increment",
       label: "+1",
       operation: handleIncrement,
-      tries: tryMap.Increment,
-      display: tryMap.Increment != 0,
+      tries: buttonUsesMap.Increment,
+      display: buttonUsesMap.Increment != 0,
     },
     {
       name: "Decrement",
       label: "-1",
       operation: handleDecrement,
-      tries: tryMap.Decrement,
-      display: tryMap.Decrement != 0,
+      tries: buttonUsesMap.Decrement,
+      display: buttonUsesMap.Decrement != 0,
     },
   ];
 </script>
-<div class="gamenotifcontainer">
-  {#if gameState==3 || gameState==0}
-    <!-- Where the results pop up will show -->
-    <FinishedPopup open={false} {gameState} {attemptsLeft}/>
-  {/if}
-</div>
-<h2>Attempts Left: {attemptsLeft}</h2>
+
+{#if gameState == 3 || gameState == 0}
+  <!-- Where the results pop up will show -->
+  <div
+    class="gamenotifcontainer"
+    in:fade={{ delay: 800, duration: 500 }}
+    out:fade
+  >
+    <FinishedPopup open={true} {gameState} attemptsLeft={attemptsUsed} />
+  </div>
+{/if}
+<h2>Attempts Used: {attemptsUsed}</h2>
 <h2>🎯 {answer}</h2>
-<button disabled={!retryEnabled} on:click={handleTryAgain} style={"font-size: 20px;"}><p>🔄</p></button>
+<button
+  disabled={!retryEnabled}
+  on:click={handleTryAgain}
+  style={"font-size: 20px;"}><p>🔄</p></button
+>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->
 <!-- <p>Operations Left: {operationsLeft}</p> -->
-<h1 style="color: {countColour};">{count}</h1> 
-
+<h1 style="color: {countColour};">{count}</h1>
 
 <OpButtonContainer {operationButtons} />
-
-
-<style>
-  .gamenotifcontainer {
-    display: flex;
-    justify-content: center; /* Aligns items horizontally to the center */
-}
-</style>
 <!-- The game should be: Computer generates random starting number between 2 and 7, 
  it will then perform 7 operations on it which will be recorded
  the final number must not be above 777. (generator will keep going round until the number is created)
@@ -115,3 +130,10 @@
 <!-- 7 tries, 7 possibilites, 7 operations -->
 
 <!-- operations: square, double, triple, increment, decrement, half -->
+
+<style>
+  .gamenotifcontainer {
+    display: flex;
+    justify-content: center; /* Aligns items horizontally to the center */
+  }
+</style>
