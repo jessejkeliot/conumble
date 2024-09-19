@@ -10,7 +10,7 @@
   const noOfAttempts = 3;
   let count: number = startValue;
   let buttonUsesMap = { ...initialButtonUsesMap };
-  let attemptsUsed = 0;
+  let attemptsUsed = 3;
   let gameState = 0;
   let userInputMap = "";
   let currentTryUserInputMap = "";

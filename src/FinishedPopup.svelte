@@ -13,7 +13,7 @@
 {#if open}
   <div class="gridcontainer">
     <div class="griditem" id="congratulations"><h3>Congrats</h3></div>
-    <div class="griditem" id="emojirep" style={"background-color: fuchsia;"}></div>
+    <div class="griditem" id="emojirep" style={"background-color: darkcyan;"}></div>
     <div class="griditem" id="sharepage"><ShareWidget resultRepresentation={"gamer"}/></div>
     <div class="griditem" id="nextconumble"><h3>next is</h3></div>
   </div>
@@ -22,6 +22,9 @@
 <style>
   .griditem {
     position: relative;
+    border-bottom: 0.3em solid black;
+    border-radius: inherit;
+    background-color: slategray;
   }
 
   .griditem h3 {
@@ -32,16 +35,18 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
+
   .gridcontainer {
     z-index: 1;
     position: absolute;
     width: 60%;
     height: 80%;
-    background-color: slategrey;
+    background-color: darkcyan;
     display: grid;
     grid-template-rows: repeat(5, 1fr);
     margin-right: auto;
-    border: 4px solid black;
+    border: 0.2em solid black;
+    border-radius: 2em;
   }
   #congratulations {
     grid-row: 1; /* Item 1 occupies the first row */
@@ -57,5 +62,6 @@
 
   #nextconumble {
     grid-row: 5; /* Item 4 occupies the fifth row */
+    border-bottom: none;
   }
 </style>
