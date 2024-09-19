@@ -58,7 +58,7 @@
   onMount(loadQuestions);
   // };
 </script> 
-
+<div>
 {#if todaysQuestion}
   <!-- Render the Game component and pass today's question as a prop -->
   <Game777 {todaysQuestion} questionIndex={index}/>
@@ -66,3 +66,12 @@
   <!-- Show a loading message or spinner while the question is being fetched -->
   <p>Loading today's question...</p>
 {/if}
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+  }
+</style>

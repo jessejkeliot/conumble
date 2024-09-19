@@ -114,7 +114,6 @@
     />
   </div>
 {/if}
-<TopBar></TopBar>
 <h2>Attempts Used: {attemptsUsed}</h2>
 <h2>🎯 {answer}</h2>
 <button
