@@ -19,7 +19,6 @@
 <style>
   h2 {
     font-size: 1.5em;
-    transform: scaleX(1.1);
   }
   button {
     z-index: 5;
