@@ -1,5 +1,4 @@
 <script lang="ts">
-
   import type { Question } from './types'; // Import the Question type
   import { readable } from "svelte/store";
   import { onMount } from "svelte";
@@ -68,10 +67,10 @@
 {/if}
 </div>
 
-<style>
+<!-- <style>
   div {
     display: flex;
     flex-direction: column;
     place-items: center;
   }
-</style>
+</style> -->

@@ -2,22 +2,23 @@
   import Game777 from "./Game777.svelte"; //conumero
   import QaProvider from "./QAProvider.svelte";
   import TopBar from "./TopBar.svelte";
+  import Topbar2 from "./Topbar2.svelte";
 </script>
 
 
 <TopBar></TopBar>
 <div class="DynamicGameUIContainer" style={"outline: solid white"}>
-  <QaProvider />
+  <div>  <QaProvider /></div>
 </div>
-<!-- 
+
 <style>
-  .dynamicGameUIContainer {
+  .DynamicGameUIContainer {
     margin: 0;
     display: flex;
-    padding: 0;
-    place-items: center;
+    padding: 20px;
+    justify-content: center;
     min-width: 320px;
-    min-height: 100vh;
     box-sizing: border-box;
+    outline: solid blue;
   }
-</style> -->
+</style>
