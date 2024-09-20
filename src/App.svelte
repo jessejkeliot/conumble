@@ -2,7 +2,6 @@
   import Game777 from "./Game777.svelte"; //conumero
   import QaProvider from "./QAProvider.svelte";
   import TopBar from "./TopBar.svelte";
-  import Topbar2 from "./Topbar2.svelte";
 </script>
 
 
