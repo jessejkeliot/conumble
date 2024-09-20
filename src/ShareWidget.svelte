@@ -18,7 +18,8 @@
 
 <style>
   h2 {
-    font-size: 1.5em;
+    font-size: clamp(2vmin, 5vw, 3vmax);
+    transform: scale(1.5);
   }
   button {
     z-index: 5;
@@ -36,7 +37,7 @@
     border: none;
   }
   div {
-    z-index: 5;
+    z-index: 0;
     height: 50%;
     width: 63%;
     background-color: rgb(0, 197, 197);

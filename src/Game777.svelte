@@ -4,8 +4,19 @@
   import FinishedPopup from "./FinishedPopup.svelte";
   import { fade, fly } from "svelte/transition";
   import TopBar from "./TopBar.svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   export let todaysQuestion: Question;
   export let questionIndex: number | null;
+
+  const popupDispatch = createEventDispatcher();
+
+  function openFinishedPopup(event: Event) {
+  }
+  onMount(() => {
+    if(questionIndex){
+      localStorage.setItem('lastQuestionPlayed', questionIndex.toString());
+    }
+  })
   const answer: number = todaysQuestion.targetValue;
   const startValue: number = todaysQuestion.startValue;
   const initialButtonUsesMap = todaysQuestion.tryMap;
@@ -100,6 +111,7 @@
 
 {#if gameState == 3 || gameState == 0}
   <!-- Where the results pop up will show -->
+  
   <div
     class="gamenotifcontainer"
     in:fade={{ delay: 800, duration: 500 }}

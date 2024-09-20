@@ -30,21 +30,18 @@
   <div class="gridcontainer">
     <div class="griditem" id="congratulations">
       <h3>
-        congratulations on completing the <span style={"font-style: italic;"}
+        congratulations on completing the <span style="font-style: italic;"
           >{questionIndex}{getOrdinal(questionIndex)}</span
         > conumble
       </h3>
     </div>
-    <div
-      class="griditem"
-      id="emojirep"
-    ></div>
+    <div class="griditem" id="emojirep"></div>
     <div class="griditem" id="sharepage">
       <ShareWidget resultRepresentation={"gamer"} />
     </div>
     <div class="griditem" id="nextconumble">
       <h3>
-        come back in { 1440 - Math.floor((getTimeFromFirstConumble() / 6e4) % 1440)} minutes for the next
+        come back in {1440 - Math.floor((getTimeFromFirstConumble() / 6e4) % 1440)} minutes for the next
         conumble
       </h3>
     </div>
@@ -52,22 +49,6 @@
 {/if}
 
 <style>
-  .griditem {
-    position: relative;
-    border-bottom: 0.3em solid black;
-    border-radius: inherit;
-    background-color: slategray;
-  }
-
-  .griditem h3 {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-
   .gridcontainer {
     z-index: 1;
     position: absolute;
@@ -76,27 +57,63 @@
     background-color: slategray;
     display: grid;
     grid-template-rows: repeat(5, 1fr);
-    /* grid-template-columns: 1fr; */
     margin-right: auto;
     border: 0.2em solid black;
     border-radius: 2em;
   }
-  #congratulations {
-    grid-row: 1; /* Item 1 occupies the first row */
-    z-index: 2;
-    padding: 0%;
+
+  .griditem {
+    position: relative;
+    border-bottom: 0.3em solid black;
+    border-radius: inherit;
+    background-color: slategray;
+    outline: solid red;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
+
+  .griditem h3 {
+    margin: 0;
+    font-size: clamp(2vmin, 5vw, 4vmax); /* Dynamically adjusts the font size based on the viewport */
+    text-align: center;
+    width: 100%;
+    line-height: 1.2; /* Adjusts line spacing */
+  }
+
+  #congratulations {
+    grid-row: 1;
+    z-index: 2;
+  }
+
   #emojirep {
-    grid-row: 2 / 4; /* Item 2 spans from the 2nd to the 3rd row (inclusive of 2nd row) */
+    grid-row: 2 / 4;
     background-color: darkcyan;
   }
 
   #sharepage {
-    grid-row: 4; /* Item 3 occupies the fourth row */
+    grid-row: 4;
   }
 
   #nextconumble {
-    grid-row: 5; /* Item 4 occupies the fifth row */
+    grid-row: 5;
     border-bottom: none;
+  }
+
+  /* Responsive behavior */
+  @media (max-width: 768px) {
+    .gridcontainer {
+      width: 80%;
+      height: 90%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gridcontainer {
+      width: 90%;
+      height: 80%;
+    }
   }
 </style>

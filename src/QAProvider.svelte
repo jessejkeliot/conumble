@@ -15,7 +15,7 @@
     selectTodaysQuestion();
   }
 
-  function selectTodaysQuestion() {
+  function selectTodaysQuestion(): number {
     const timeDiff: number = getTimeFromFirstConumble();
     index = Math.floor(timeDiff / 864e5); //daily
     console.log(timeDiff);
@@ -33,6 +33,7 @@
     }
   };
     todaysQuestion = questions[index];
+    return index;
   }
   // const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   // const firstDate = new Date(2024, 8, 10);
