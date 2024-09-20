@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Question } from "./types";
+  import type { Question, TryMap } from "./types";
   import OpButtonContainer from "./OpButtonContainer.svelte";
   import FinishedPopup from "./FinishedPopup.svelte";
   import { fade, fly } from "svelte/transition";
@@ -15,14 +15,18 @@
     if (questionIndex) {
       localStorage.setItem("lastQuestionPlayed", questionIndex.toString());
     }
+    // localStorage.setItem("square");
+    // localStorage.setItem("double");
+    // localStorage.setItem("increment");
+    // localStorage.setItem("decrement");
   });
   const answer: number = todaysQuestion.targetValue; //this all needs to be sent in before.
   export let startValue: number = todaysQuestion.startValue;
   export let initialButtonUsesMap = todaysQuestion.tryMap;
   const noOfAttempts = 3;
   let count: number = startValue;
-  let buttonUsesMap = { ...initialButtonUsesMap };
-  export let attemptsUsed = 2;
+  let buttonUsesMap: TryMap = { ...initialButtonUsesMap };
+  export let attemptsUsed = 0;
   export let gameState = 0;
   export let userInputMap = "";
   let currentTryUserInputMap = sliceCurrentTry();
@@ -39,7 +43,13 @@
     }
   }
   // 0 is failed completely 1 is failed one attempt, 2 is in session, 3 is won
-  $: localStorage.setItem("currentCount", count.toString());
+  $: localStorage.setItem("currentCount", count.toString()); //cache
+  $: localStorage.setItem("square", buttonUsesMap.Square.toString());
+  $: localStorage.setItem("double", buttonUsesMap.Double.toString());
+  $: localStorage.setItem("increment", buttonUsesMap.Increment.toString());
+  $: localStorage.setItem("decrement", buttonUsesMap.Decrement.toString());
+  $: localStorage.setItem("gameState", gameState.toString());
+  $: localStorage.setItem("attemptsUsed", attemptsUsed.toString());
   $: console.log(count);
   $: operationsLeft = Object.values(buttonUsesMap).reduce((a, b) => a + b, 0);
   $: retryEnabled = attemptsUsed != noOfAttempts;
@@ -58,34 +68,41 @@
     count = count * count;
     buttonUsesMap.Square--;
     buttonUsesMap = buttonUsesMap;
+    // localStorage.setItem("square", buttonUsesMap.Square.toString());
     userInputMap += "^";
     currentTryUserInputMap += "^";
   };
   const handleDouble = () => {
     count = count * 2;
     buttonUsesMap.Double--;
+    buttonUsesMap = buttonUsesMap;
+    localStorage.setItem("double", buttonUsesMap.Double.toString());
     userInputMap += "2";
     currentTryUserInputMap += "2";
   };
   const handleIncrement = () => {
     count++;
     buttonUsesMap.Increment--;
+    buttonUsesMap = buttonUsesMap;
+    localStorage.setItem("increment", buttonUsesMap.Increment.toString());
     userInputMap += "+";
     currentTryUserInputMap += "+";
   };
   const handleDecrement = () => {
     count--;
     buttonUsesMap.Decrement--;
+    buttonUsesMap = buttonUsesMap;
+    localStorage.setItem("decrement", buttonUsesMap.Decrement.toString());
     userInputMap += "-";
     currentTryUserInputMap += "-";
   };
 
   const handleTryAgain = () => {
-    if (currentTryUserInputMap != "") {
+    if (currentTryUserInputMap != "" || count != todaysQuestion.startValue) {
       console.log(currentTryUserInputMap);
       attemptsUsed++;
-      count = startValue;
-      buttonUsesMap = { ...initialButtonUsesMap };
+      count = todaysQuestion.startValue;
+      buttonUsesMap = { ...todaysQuestion.tryMap };
       userInputMap += "r";
       currentTryUserInputMap = "";
     }

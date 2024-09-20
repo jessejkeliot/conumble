@@ -1,26 +1,43 @@
 <script lang="ts">
-  import type { Question } from './types'; // Import the Question type
+  import type { Question, TryMap } from "./types"; // Import the Question type
   import { readable } from "svelte/store";
   import { onMount } from "svelte";
   import { currentQuestion } from "./stores";
-  import Game777 from './Game777.svelte';
-  import { getTimeFromFirstConumble} from './timeFunction.js'
-  let questions : Question[] = [];
+  import Game777 from "./Game777.svelte";
+  import { getTimeFromFirstConumble } from "./timeFunction.js";
+  let questions: Question[] = [];
   let todaysQuestion: Question | null = null;
   let index: number | null = null;
   let playedToday: boolean = false;
   let startValue: number = 0;
+  let initialButtonUsesMap: TryMap = {
+    Square: 3,
+    Double: 3,
+    Increment: 3,
+    Decrement: 3,
+  };
+  let gameState: number;
+  let attemptsUsed: number;
   // Fetch the JSON data on component mount
   async function loadQuestions() {
-    const response = await fetch('/questions.json');
+    const response = await fetch("/questions.json");
     questions = await response.json();
     selectTodaysQuestion();
   }
-  
+
   async function loadCookies() {
-    playedToday = await localStorage.getItem("playedToday") == "true"; //comes back as a string bool
-    if(playedToday == true){
+    playedToday = (await localStorage.getItem("playedToday")) == "true"; //comes back as a string bool
+    if (playedToday == true) {
+      console.log("Reloading Game State");
       startValue = Number(localStorage.getItem("currentCount"));
+      initialButtonUsesMap = {
+        Square: Number(localStorage.getItem("square")),
+        Double: Number(localStorage.getItem("double")),
+        Increment: Number(localStorage.getItem("increment")),
+        Decrement: Number(localStorage.getItem("decrement")),
+      };
+      gameState = Number(localStorage.getItem("gameState"));
+      attemptsUsed = Number(localStorage.getItem("attemptsUsed"))
       console.log(localStorage.getItem("currentCount"));
     }
   }
@@ -32,15 +49,15 @@
     //console.log(questions[index].startValue);
     //console.log(index);
     todaysQuestion = {
-    "startValue": 3,
-    "targetValue": 45,
-    "tryMap": {
-      "Square": 1,
-      "Double": 2,
-      "Increment": 3,
-      "Decrement": 1
-    }
-  };
+      startValue: 3,
+      targetValue: 45,
+      tryMap: {
+        Square: 1,
+        Double: 2,
+        Increment: 3,
+        Decrement: 1,
+      },
+    };
     todaysQuestion = questions[index];
     return index;
   }
@@ -69,17 +86,27 @@
     loadCookies();
   });
   // };
-</script> 
+</script>
+
 <div>
-{#if todaysQuestion}
-  <!-- Render the Game component and pass today's question as a prop -->
-   {#if playedToday == true}
-    <Game777 {todaysQuestion} questionIndex={index} startValue={startValue}/>
+  {#if todaysQuestion}
+    <!-- Render the Game component and pass today's question as a prop -->
+    {#if playedToday == true}
+      <Game777
+        {todaysQuestion}
+        questionIndex={index}
+        {startValue}
+        {initialButtonUsesMap}
+        {gameState}
+        {attemptsUsed}
+      />
+    {:else}
+      <Game777 {todaysQuestion} questionIndex={index} />
+    {/if}
+  {:else}
+    <!-- Show a loading message or spinner while the question is being fetched -->
+    <p>Loading today's question...</p>
   {/if}
-{:else}
-  <!-- Show a loading message or spinner while the question is being fetched -->
-  <p>Loading today's question...</p>
-{/if}
 </div>
 
 <!-- <style>
