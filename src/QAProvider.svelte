@@ -8,13 +8,22 @@
   let questions : Question[] = [];
   let todaysQuestion: Question | null = null;
   let index: number | null = null;
+  let playedToday: boolean = false;
+  let startValue: number = 0;
   // Fetch the JSON data on component mount
   async function loadQuestions() {
     const response = await fetch('/questions.json');
     questions = await response.json();
     selectTodaysQuestion();
   }
-
+  
+  async function loadCookies() {
+    playedToday = await localStorage.getItem("playedToday") == "true"; //comes back as a string bool
+    if(playedToday == true){
+      startValue = Number(localStorage.getItem("currentCount"));
+      console.log(localStorage.getItem("currentCount"));
+    }
+  }
   function selectTodaysQuestion(): number {
     const timeDiff: number = getTimeFromFirstConumble();
     index = Math.floor(timeDiff / 864e5); //daily
@@ -55,13 +64,18 @@
   //   },
   // };
   // currentQuestion.set(q); //daily change of answer;
-  onMount(loadQuestions);
+  onMount(() => {
+    loadQuestions();
+    loadCookies();
+  });
   // };
 </script> 
 <div>
 {#if todaysQuestion}
   <!-- Render the Game component and pass today's question as a prop -->
-  <Game777 {todaysQuestion} questionIndex={index}/>
+   {#if playedToday == true}
+    <Game777 {todaysQuestion} questionIndex={index} startValue={startValue}/>
+  {/if}
 {:else}
   <!-- Show a loading message or spinner while the question is being fetched -->
   <p>Loading today's question...</p>

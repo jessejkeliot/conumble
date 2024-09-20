@@ -2,18 +2,36 @@
   export let resultRepresentation: string;
   let buttonText: string = "share 📤";
   function handleClick(): void {
-      navigator.clipboard.writeText(resultRepresentation);
-      buttonText = "copied! 🔗";
+    buttonText = "failed to copy! ❌";
+    const textBlob = new Blob([resultRepresentation], { type: 'text/plain' });
+    const clipboardItem = new ClipboardItem({'text/plain': textBlob });
+    navigator.clipboard
+      .write([clipboardItem])
+      .then(() => {
+        buttonText = "copied! 🔗"; // Update the button text when copying succeeds
+      })
+      .catch(() => {
+        buttonText = "failed to copy! ❌"; // Handle the error case
+      });
+  }
+  function handleClick2() {
+    navigator.clipboard.writeText(resultRepresentation);
+    buttonText = "copied! 🔗";
+    console.warn(navigator.canShare());
+    try {
+        navigator.share({ title: "conumble", text: resultRepresentation });
+    } catch (error) {
+        navigator.clipboard.writeText(resultRepresentation);
     }
+  }
 </script>
 
 <!-- <button on:click={handleClick}>Share</button> -->
 <!-- <div role="button" class="ShareButtonContainer" on:click={handleClick}>
   
 </div> -->
-<button on:click={handleClick}>
-    <h2 id="shareText">{buttonText}</h2>
-
+<button on:click={handleClick2}>
+  <h2 id="shareText">{buttonText}</h2>
 </button>
 
 <style>
