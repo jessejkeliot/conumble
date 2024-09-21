@@ -35,7 +35,9 @@
       <button
         class="dupeButtons"
         style="top: {(index2 + 1) * gap}px; z-index: {4 - index2}"
-        disabled={true}
+        on:click={operation}
+        on:touchstart={() => handleTouchStart(index)}
+        on:touchend={handleTouchEnd}
       ></button>
     {/each}
   {/if}
