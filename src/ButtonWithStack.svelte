@@ -4,7 +4,7 @@
   export let index;
   export let tries;
   export let label;
-  let gap = 30;
+  let gap = 12;
   // Reactive state for storing whether a button is tapped
   let tappedButton = -1;
 
@@ -32,14 +32,13 @@
   <!-- content here -->
   {#each { length: (tries -1) } as item, index2}
     <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
-    <button class="dupeButtons" style="top: {(index2 + 1) * gap}px;" disabled={true}></button>
+    <button class="dupeButtons" style="top: {(index2 + 1) * gap}px; z-index: {4 - index2}" disabled={true}></button>
   {/each}
   {/if}
 </div>
 
 <style>
   .dupeButtons {
-    z-index: 0;
     position: absolute;
     background-color: #1a1a1a;
   }
@@ -49,7 +48,8 @@
     position: relative;
   }
   button {
-    z-index: 4;
+    height: 3.5em;
+    z-index: 5;
     border-radius: 8px;
     border: 1px solid transparent;
     width: min-content;
