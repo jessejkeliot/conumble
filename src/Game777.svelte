@@ -117,7 +117,7 @@
     },
     {
       name: "Double",
-      label: "✕2",
+      label: "×2",
       operation: handleDouble,
       tries: buttonUsesMap.Double,
       display: buttonUsesMap.Double != 0,
