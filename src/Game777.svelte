@@ -110,7 +110,7 @@
   $: operationButtons = [
     {
       name: "Square",
-      label: "☐",
+      label: "▢",
       operation: handleSquare,
       tries: buttonUsesMap.Square,
       display: buttonUsesMap.Square != 0,
@@ -156,7 +156,7 @@
     />
   </div>
 {/if}
-<h2>Attempts Used: {attemptsUsed}</h2>
+<h3>Attempts Used: {attemptsUsed}</h3>
 <h2>🎯 {answer}</h2>
 <button
   disabled={!retryEnabled}

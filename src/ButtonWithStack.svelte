@@ -21,7 +21,7 @@
 
 <div class="buttonStackContainer">
   <button
-    hidden={!display}
+    disabled={!display}
     on:click={operation}
     on:touchstart={() => handleTouchStart(index)}
     on:touchend={handleTouchEnd}
@@ -29,11 +29,15 @@
     ><div class="buttonTextHolder"><p>{label}</p></div>
   </button>
   {#if tries > 1}
-  <!-- content here -->
-  {#each { length: (tries -1) } as item, index2}
-    <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
-    <button class="dupeButtons" style="top: {(index2 + 1) * gap}px; z-index: {4 - index2}" disabled={true}></button>
-  {/each}
+    <!-- content here -->
+    {#each { length: tries - 1 } as item, index2}
+      <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
+      <button
+        class="dupeButtons"
+        style="top: {(index2 + 1) * gap}px; z-index: {4 - index2}"
+        disabled={true}
+      ></button>
+    {/each}
   {/if}
 </div>
 
@@ -68,10 +72,10 @@
     box-shadow: 0px 3px 1px -1px darkslategray;
   }
   button p {
-    font-size:medium;
+    font-size: medium;
   }
   .buttonTextHolder {
-    transform:scale(2, 2);
+    transform: scale(2, 2);
   }
   @media (hover: hover) {
     button:hover:enabled {
@@ -79,11 +83,12 @@
       /* transform: translateY(-5px); */
     }
   }
-  button:disabled {
-    background-color: mediumvioletred;
+  button:disabled:not(.dupeButtons) {
+    background-color: transparent;
     text-decoration: line-through;
+    box-shadow: 0px 0px 9px 0px darkslategray;
   }
-  button:disabled.dupeButtons  {
+  button:disabled.dupeButtons {
     background-color: #1a1a1a;
   }
   button:focus,
@@ -91,8 +96,8 @@
     outline: 4px auto -webkit-focus-ring-color;
   }
   :focus:not(:focus-visible) {
-  outline: 0;
-}
+    outline: 0;
+  }
 
   @media screen and (max-width: 550px) {
     button {
