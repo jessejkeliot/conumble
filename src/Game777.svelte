@@ -110,7 +110,7 @@
   $: operationButtons = [
     {
       name: "Square",
-      label: "⏹️",
+      label: "☐",
       operation: handleSquare,
       tries: buttonUsesMap.Square,
       display: buttonUsesMap.Square != 0,

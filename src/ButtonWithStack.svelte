@@ -4,7 +4,7 @@
   export let index;
   export let tries;
   export let label;
-  let gap = 12;
+  let gap = 8;
   // Reactive state for storing whether a button is tapped
   let tappedButton = -1;
 
@@ -26,7 +26,7 @@
     on:touchstart={() => handleTouchStart(index)}
     on:touchend={handleTouchEnd}
     class:tapped={tappedButton === index}
-    ><p>{label}</p>
+    ><div class="buttonTextHolder"><p>{label}</p></div>
   </button>
   {#if tries > 1}
   <!-- content here -->
@@ -65,12 +65,18 @@
     color: white;
     min-width: 7em;
     user-select: none;
-    box-shadow: 0px 4px 5px darkslategray;
+    box-shadow: 0px 3px 1px -1px darkslategray;
+  }
+  button p {
+    font-size:medium;
+  }
+  .buttonTextHolder {
+    transform:scale(2, 2);
   }
   @media (hover: hover) {
     button:hover:enabled {
       background-color: #66cdaa;
-      transform: translateY(-5px);
+      /* transform: translateY(-5px); */
     }
   }
   button:disabled {
@@ -84,6 +90,9 @@
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
+  :focus:not(:focus-visible) {
+  outline: 0;
+}
 
   @media screen and (max-width: 550px) {
     button {

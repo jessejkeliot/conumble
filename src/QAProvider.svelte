@@ -56,7 +56,7 @@
     //   startValue: 3,
     //   targetValue: 45,
     //   tryMap: {
-    //     Square: 1,
+    //     Square: 4,
     //     Double: 2,
     //     Increment: 3,
     //     Decrement: 1,

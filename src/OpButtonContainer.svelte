@@ -35,7 +35,7 @@
     grid-template-columns: repeat(4, 1fr);
     user-select: none;
     pointer-events: relative;
-    row-gap: 0.5em;
+    row-gap: 1.2em;
     /* margin-bottom: 3em; */
   }
   button {
