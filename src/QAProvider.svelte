@@ -5,7 +5,7 @@
   import { currentQuestion } from "./stores";
   import Game777 from "./Game777.svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
-  let useCookies = true;
+  let useCookies = false;
 
   let questions: Question[] = [];
   let todaysQuestion: Question | null = null;
@@ -30,7 +30,6 @@
 
   async function loadCookies() {
     playedToday = (await localStorage.getItem("playedToday")) == "true"; //comes back as a string bool
-    playedEver = (await localStorage.getItem("lastQuestionPlayed")) == null;
     if (playedToday == true) {
       console.log("Reloading Game State");
       startValue = Number(localStorage.getItem("currentCount"));

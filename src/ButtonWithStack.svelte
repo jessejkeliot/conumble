@@ -1,7 +1,10 @@
 <script lang="ts">
-  import ButtonWithStack from "./ButtonWithStack.svelte";
-
-  export let operationButtons;
+  export let display;
+  export let operation;
+  export let index;
+  export let tries;
+  export let label;
+  let gap = 30;
   // Reactive state for storing whether a button is tapped
   let tappedButton = -1;
 
@@ -16,32 +19,37 @@
   }
 </script>
 
-<div class="container">
-  {#each operationButtons as button, index}
-    <ButtonWithStack
-      display={button.display}
-      operation={button.operation}
-      {index}
-      label={button.label}
-      tries={button.tries}
-      ></ButtonWithStack
-    >
+<div class="buttonStackContainer">
+  <button
+    disabled={!display}
+    on:click={operation}
+    on:touchstart={() => handleTouchStart(index)}
+    on:touchend={handleTouchEnd}
+    class:tapped={tappedButton === index}
+    ><p>{label}</p>
+  </button>
+  {#each { length: (tries -1) } as item, index2}
+    <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
+    <button class="dupeButtons" style="top: {(index2 + 1) * gap}px;" disabled={true}></button>
   {/each}
 </div>
 
 <style>
-  .container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    user-select: none;
-    pointer-events: relative;
-    row-gap: 0.5em;
-    /* margin-bottom: 3em; */
+  .dupeButtons {
+    z-index: 0;
+    position: absolute;
+    background-color: #1a1a1a;
+  }
+  .buttonStackContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
   }
   button {
+    z-index: 4;
     border-radius: 8px;
     border: 1px solid transparent;
-    width: auto;
+    width: min-content;
     padding: 1em 1.6em;
     max-width: 30%;
     font-size: 1em;
@@ -52,6 +60,9 @@
     margin: 0.4em;
     transition: all 0.4s;
     color: white;
+    min-width: 7em;
+    user-select: none;
+    box-shadow: 0px 4px 5px darkslategray;
   }
   @media (hover: hover) {
     button:hover:enabled {
@@ -63,15 +74,15 @@
     background-color: mediumvioletred;
     text-decoration: line-through;
   }
+  button:disabled.dupeButtons  {
+    background-color: #1a1a1a;
+  }
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
 
   @media screen and (max-width: 550px) {
-    .container {
-      grid-template-columns: repeat(2, 1fr);
-    }
     button {
       transition: all 0.05s;
     }
@@ -79,10 +90,4 @@
       background-color: #66cdaa;
     }
   }
-  button {
-    min-width: 7em;
-    user-select: none;
-  }
-  /* .tapped {
-    background-color: #0056b3 !important; /* Color when button is pressed */
 </style>
