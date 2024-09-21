@@ -51,17 +51,17 @@
     //todaysQuestion = questions[index];
     //console.log(questions[index].startValue);
     //console.log(index);
-    todaysQuestion = {
-      startValue: 3,
-      targetValue: 45,
-      tryMap: {
-        Square: 1,
-        Double: 2,
-        Increment: 3,
-        Decrement: 1,
-      },
-    };
     todaysQuestion = questions[index];
+    // todaysQuestion = {
+    //   startValue: 3,
+    //   targetValue: 45,
+    //   tryMap: {
+    //     Square: 1,
+    //     Double: 2,
+    //     Increment: 3,
+    //     Decrement: 1,
+    //   },
+    // };
     return index;
   }
   // const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds

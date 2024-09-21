@@ -21,17 +21,20 @@
 
 <div class="buttonStackContainer">
   <button
-    disabled={!display}
+    hidden={!display}
     on:click={operation}
     on:touchstart={() => handleTouchStart(index)}
     on:touchend={handleTouchEnd}
     class:tapped={tappedButton === index}
     ><p>{label}</p>
   </button>
+  {#if tries > 1}
+  <!-- content here -->
   {#each { length: (tries -1) } as item, index2}
     <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
     <button class="dupeButtons" style="top: {(index2 + 1) * gap}px;" disabled={true}></button>
   {/each}
+  {/if}
 </div>
 
 <style>
