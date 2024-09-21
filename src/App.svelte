@@ -5,30 +5,35 @@
   import FinishedPopup from "./FinishedPopup.svelte";
   import { onMount } from "svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
-
+  import HelpPage from "./HelpPage.svelte";
+  const playedEver = (localStorage.getItem("lastQuestionPlayed")) != null;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
     const index: number = Math.floor(timeDiff / 864e5); //daily
-
     try {
-      if(localStorage.getItem("lastQuestionPlayed") == index.toString()) {
-
-  }
+      if (localStorage.getItem("lastQuestionPlayed") == index.toString()) {
+        localStorage.setItem("playedToday", "true");
+      }
+      else {
+        localStorage.setItem("playedToday", "false");
+      }
     } catch (error) {
       localStorage.setItem("lastQuestionPlayed", index.toString());
     }
-    
-  })
+  });
   let popupOpen = false;
   function handleMessage(event: Event) {
     popupOpen = true;
   }
-
 </script>
+<!-- changed for debuggin  -->
+{#if playedEver} 
+<HelpPage />
+{/if}
 
 <TopBar></TopBar>
 <div class="DynamicGameUIContainer" style={"outline: solid white"}>
-  <div>  <QaProvider /></div>
+  <div><QaProvider /></div>
 </div>
 
 <style>
