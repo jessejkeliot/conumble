@@ -27,12 +27,12 @@
   }
 </script>
 <!-- changed for debuggin  -->
-{#if playedEver} 
+{#if !playedEver} 
 <HelpPage />
 {/if}
 
 <TopBar></TopBar>
-<div class="DynamicGameUIContainer" style={"outline: solid white"}>
+<div class="DynamicGameUIContainer">
   <div><QaProvider /></div>
 </div>
 
@@ -44,6 +44,6 @@
     justify-content: center;
     min-width: 320px;
     box-sizing: border-box;
-    outline: solid blue;
+    /* outline: solid white; */
   }
 </style>
