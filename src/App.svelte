@@ -5,11 +5,11 @@
   import FinishedPopup from "./FinishedPopup.svelte";
   import { onMount } from "svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
-
+  import HelpPage from "./HelpPage.svelte";
+  const playedEver = (localStorage.getItem("lastQuestionPlayed")) != null;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
     const index: number = Math.floor(timeDiff / 864e5); //daily
-
     try {
       if (localStorage.getItem("lastQuestionPlayed") == index.toString()) {
         localStorage.setItem("playedToday", "true");
@@ -26,6 +26,10 @@
     popupOpen = true;
   }
 </script>
+<!-- changed for debuggin  -->
+{#if playedEver} 
+<HelpPage />
+{/if}
 
 <TopBar></TopBar>
 <div class="DynamicGameUIContainer" style={"outline: solid white"}>

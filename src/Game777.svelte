@@ -7,7 +7,6 @@
   import { createEventDispatcher, onMount } from "svelte";
   export let todaysQuestion: Question;
   export let questionIndex: number | null;
-
   const popupDispatch = createEventDispatcher();
 
   function openFinishedPopup(event: Event) {}

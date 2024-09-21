@@ -5,10 +5,13 @@
   import { currentQuestion } from "./stores";
   import Game777 from "./Game777.svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
+  let useCookies = true;
+
   let questions: Question[] = [];
   let todaysQuestion: Question | null = null;
   let index: number | null = null;
   let playedToday: boolean = false;
+  let playedEver: boolean = false;
   let startValue: number = 0;
   let initialButtonUsesMap: TryMap = {
     Square: 3,
@@ -27,6 +30,7 @@
 
   async function loadCookies() {
     playedToday = (await localStorage.getItem("playedToday")) == "true"; //comes back as a string bool
+    playedEver = (await localStorage.getItem("lastQuestionPlayed")) == null;
     if (playedToday == true) {
       console.log("Reloading Game State");
       startValue = Number(localStorage.getItem("currentCount"));
@@ -91,7 +95,7 @@
 <div>
   {#if todaysQuestion}
     <!-- Render the Game component and pass today's question as a prop -->
-    {#if playedToday == true}
+    {#if playedToday == true && useCookies}
       <Game777
         {todaysQuestion}
         questionIndex={index}
