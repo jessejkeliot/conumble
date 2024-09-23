@@ -45,6 +45,7 @@
   .dupeButtons {
     position: absolute;
     background-color: var(--secondary-color);
+    user-select: none;
   }
   .buttonStackContainer {
     display: flex;

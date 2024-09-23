@@ -63,7 +63,7 @@
         : (gameState = 1) //attempt lost
       : (gameState = 2); //in play
   //colour of the count
-  const eventColours = ["#E9210A", "#FF6700", "#FFFFFF", "#22DB31"];
+  const eventColours = ["#E9210A", "#FF6700", "#262224", "#22DB31"];
   $: countColour = eventColours[gameState];
   // const countColour = eventColours[0];
   const onKeyDown = (e: KeyboardEventInit) => {

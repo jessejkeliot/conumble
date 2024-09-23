@@ -5,7 +5,7 @@
     export let color;
 </script>
 
-<h1 style:color={color}>{value}</h1>
+<h1>{value}</h1>
 <style>
     div {
         outline: dotted gold;
@@ -18,6 +18,7 @@
     }
     h1{
         outline: dashed darkmagenta;
+        color: var(--text-color);
         /* font-size: initial; */
     }
 </style>
