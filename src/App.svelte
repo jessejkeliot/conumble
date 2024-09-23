@@ -6,6 +6,7 @@
   import { onMount } from "svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
   import HelpPage from "./HelpPage.svelte";
+  import HelpPageDraft from "./HelpPageDraft.svelte";
   const playedEver = (localStorage.getItem("lastQuestionPlayed")) != null;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
@@ -25,10 +26,20 @@
   function handleMessage(event: Event) {
     popupOpen = true;
   }
+  const easyQuestion = {
+      startValue: 4,
+      targetValue: 9,
+      tryMap: {
+        Square: 0,
+        Double: 1,
+        Increment: 1,
+        Decrement: 0,
+      },
+    };
 </script>
 <!-- changed for debuggin  -->
-{#if !playedEver} 
-<HelpPage />
+{#if true} 
+<HelpPageDraft></HelpPageDraft>
 {/if}
 
 <TopBar></TopBar>

@@ -7,6 +7,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import Counter from "./Counter.svelte";
   import ButtonWithStack from "./ButtonWithStack.svelte";
+  import Target from "./Target.svelte";
   export let todaysQuestion: Question;
   export let questionIndex: number | null;
   const popupDispatch = createEventDispatcher();
@@ -191,7 +192,7 @@
 {/if}
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:window on:keydown={onKeyDown} />
-<div style:outline="dotted purple"><h2 class="target">🎯 {answer}</h2></div>
+<Target targetValue={answer}></Target>
 <!-- <button
   disabled={!retryEnabled}
   on:click={handleTryAgain}
