@@ -5,6 +5,8 @@
   import { fade, fly } from "svelte/transition";
   import TopBar from "./TopBar.svelte";
   import { createEventDispatcher, onMount } from "svelte";
+  import Counter from "./Counter.svelte";
+  import ButtonWithStack from "./ButtonWithStack.svelte";
   export let todaysQuestion: Question;
   export let questionIndex: number | null;
   const popupDispatch = createEventDispatcher();
@@ -52,6 +54,7 @@
   $: console.log(count);
   $: operationsLeft = Object.values(buttonUsesMap).reduce((a, b) => a + b, 0);
   $: retryEnabled = attemptsUsed != noOfAttempts;
+  $: attempsLeft = noOfAttempts - attemptsUsed;
   $: count == answer
     ? (gameState = 3) //won
     : operationsLeft == 0
@@ -63,6 +66,36 @@
   const eventColours = ["#E9210A", "#FF6700", "#FFFFFF", "#22DB31"];
   $: countColour = eventColours[gameState];
   // const countColour = eventColours[0];
+  const onKeyDown = (e: KeyboardEventInit) => {
+    console.log("boom!");
+    switch (e.keyCode) {
+      case 82:
+        if (retryEnabled) {
+          handleTryAgain();
+        }
+        break;
+      case 83:
+        if (buttonUsesMap.Square > 0) {
+          handleSquare();
+        }
+        break;
+      case 68:
+        if (buttonUsesMap.Double > 0) {
+          handleDouble();
+        }
+        break;
+      case 70:
+      if(buttonUsesMap.Increment > 0){
+        handleIncrement();}
+        break;
+      case 71:
+      if(buttonUsesMap.Decrement > 0){
+        handleDecrement();}
+        break;
+      default:
+        break;
+    }
+  };
   const handleSquare = () => {
     count = count * count;
     buttonUsesMap.Square--;
@@ -156,16 +189,26 @@
     />
   </div>
 {/if}
-<h3>Attempts Used: {attemptsUsed}</h3>
-<h2>🎯 {answer}</h2>
-<button
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<svelte:window on:keydown={onKeyDown} />
+<div style:outline="dotted purple"><h2 class="target">🎯 {answer}</h2></div>
+<!-- <button
   disabled={!retryEnabled}
   on:click={handleTryAgain}
   style={"font-size: 20px;"}><p>🔄</p></button
->
+> -->
+<ButtonWithStack
+  detail={{
+    operation: handleTryAgain,
+    tries: attempsLeft,
+    display: retryEnabled,
+  }}
+  label={"🔄"}
+  index="0"
+></ButtonWithStack>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->
 <!-- <p>Operations Left: {operationsLeft}</p> -->
-<h1 style="color: {countColour};">{count}</h1>
+<Counter color={eventColours[gameState]} value={count}></Counter>
 
 <OpButtonContainer {operationButtons} />
 
@@ -187,6 +230,9 @@
     display: flex;
     justify-content: center; /* Aligns items horizontally to the center */
   }
+  .target {
+    transform: scale(1.2, 1.2);
+  }
   button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -196,7 +242,7 @@
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--background-color);
     cursor: pointer;
     margin: 0.1em;
     transition: all 0.4s;
@@ -211,7 +257,7 @@
   button:disabled {
     background-color: transparent;
     text-decoration: line-through;
-    box-shadow: 0px 0px 9px 0px darkslategray;
+    box-shadow: 0px 0px 9px 0px var(--secondary-background-color);
     text-decoration: line-through;
   }
   button:focus,
@@ -220,5 +266,10 @@
   }
   :focus:not(:focus-visible) {
     outline: 0;
+  }
+  .keyListener {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
   }
 </style>

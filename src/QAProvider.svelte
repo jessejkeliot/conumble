@@ -112,10 +112,11 @@
   {/if}
 </div>
 
-<!-- <style>
+<style>
   div {
     display: flex;
     flex-direction: column;
     place-items: center;
+    outline: dotted violet;
   }
-</style> -->
+</style>

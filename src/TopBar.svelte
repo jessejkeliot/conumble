@@ -7,13 +7,13 @@
 </div> -->
 
 <div class="flexcontainer">
-    <div class="griditem" id="help">🔮</div>
-    <div class="griditem" id="title">Conumble</div>
-    <div class="griditem" id="accordion">⚜️</div>
-  </div>
+  <div class="griditem" id="help">?</div>
+  <div class="griditem" id="title">conumble</div>
+  <div class="griditem" id="accordion">◉</div>
+</div>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Jacques+Francois+Shadow&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Paytone+One&family=Roboto+Slab:wght@100..900&display=swap');
   .gridcontainer {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -22,8 +22,8 @@
     left: 0;
     right: 0;
     height: 10vh;
-    background-color: #333;
-    color: white;
+    background-color: var(--seconday-color);
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,18 +35,22 @@
     /* outline: solid red; */
     width: min-content;
     font-size: 3em;
+
     /* margin: 0.5em; */
   }
   #help {
     margin-left: 0.1em;
+    width: 1em;
   }
   #title {
-    font-family: "Fascinate Inline", system-ui;
-  font-weight: 400;
-  font-style: normal;
+    font-family: 'Roboto', "Paytone One", system-ui;
+    font-weight: 400;
+    font-style: normal;    
+    margin-bottom: 5px;
   }
   #accordion {
     margin-right: 0.1em;
+    width: 1em;
   }
   button {
     z-index: 5;
@@ -65,25 +69,24 @@
     place-items: center;
     justify-content: space-between;
     max-width: 768px;
-    background-color: #333;
+    background-color: var(--secondary-color);
   }
   @media screen and (min-width: 768px) {
     .flexcontainer {
-        display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    position: static;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10vh;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Keeps it above other content */
-    gap: 15vw;
-    font-size: 1em;
-    max-width: none;
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      position: static;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000; /* Keeps it above other content */
+      gap: 15vw;
+      font-size: 1em;
+      max-width: none;
     }
   }
 </style>

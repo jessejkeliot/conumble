@@ -53,7 +53,7 @@
     cursor: pointer;
     margin: 0.4em;
     transition: all 0.4s;
-    color: white;
+    color: var(--text-color);
   }
   @media (hover: hover) {
     button:hover:enabled {

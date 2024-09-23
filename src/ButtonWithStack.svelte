@@ -44,7 +44,7 @@
 <style>
   .dupeButtons {
     position: absolute;
-    background-color: #1a1a1a;
+    background-color: var(--secondary-color);
   }
   .buttonStackContainer {
     display: flex;
@@ -62,14 +62,14 @@
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: var(--secondary-color);
     cursor: pointer;
     margin: 0.4em;
     transition: all 0.4s;
-    color: white;
+    color: var(--text-color);
     min-width: 7em;
     user-select: none;
-    box-shadow: 0px 4px 1px -1px darkslategray;
+    box-shadow: 0px 4px 1px -1px var(--secondary-background-color);
   }
   button p {
     font-size: medium;
@@ -79,20 +79,20 @@
   }
   @media (hover: hover) {
     button:hover:enabled {
-      /* background-color: #66cdaa; */
+      background-color: var(--secondary-color-selected);
       box-shadow: none;
       /* border: 2px solid white; */
-      box-shadow: 0px 2px 3px -1px darkslategray;
+      box-shadow: 0px 2px 3px -1px var(--secondary-background-color);
       transform: translateY(-2px);
     }
   }
   button:disabled:not(.dupeButtons) {
     background-color: transparent;
     text-decoration: line-through;
-    box-shadow: 0px 0px 9px 0px darkslategray;
+    box-shadow: 0px 0px 9px 0px var(--secondary-background-color);
   }
   button:disabled.dupeButtons {
-    background-color: #1a1a1a;
+    background-color: var(--secondary-color);
   }
   button:focus,
   button:focus-visible {
@@ -107,7 +107,7 @@
       transition: all 0.05s;
     }
     button:active:enabled {
-      background-color: #66cdaa;
+      background-color: var(--secondary-color-selected);
     }
   }
 </style>

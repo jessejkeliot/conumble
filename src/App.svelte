@@ -40,11 +40,11 @@
   .DynamicGameUIContainer {
     margin: 0;
     display: flex;
-    flex-direction: row;
     padding: 20px;
     justify-content: center;
     min-width: 320px;
     box-sizing: border-box;
+    background-color: var(--background-color);
     /* outline: solid white; */
   }
 </style>

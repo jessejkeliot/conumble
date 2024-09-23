@@ -1,11 +1,12 @@
 :root {
-  font-family: monospace 'Times New Roman', Times, serif ,Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace "Times New Roman", Times, serif, Inter, system-ui,
+    Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-color);
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,9 +16,24 @@
   touch-action: manipulation; /* Prevents zooming on Double-tap */
 
   --primary-color: #98d2eb;
+  --primary-color-selected: #5f9eb9;
   --secondary-color: #efa00b;
   --background-color: #020202;
   --secondary-background-color: #706f6f;
+
+  --primary-color: #f5e1a4; /* A rich red, similar to Scrabble's "double word score" tiles */
+  --primary-color-selected: #c62828; /* A slightly darker red for selected or active states */
+  --secondary-color: #d32f2f; /* A vibrant green, reminiscent of Scrabble's "triple word score" */
+  --background-color: #1b5e20; /* A warm, light tan similar to the Scrabble board background */
+  --secondary-background-color: #795548; /* A soft brown for cards or sections, inspired by Scrabble's wooden tile holders */
+
+  --primary-color: #ff6f61; /* A bright coral for main interactive elements */
+  --primary-color-selected: #e0524a; /* A darker coral for active or selected states */
+  --secondary-color: #4caf50; /* A vibrant, energizing green for secondary elements */
+  --secondary-color-selected: hsl(122, 70%, 30%);
+  --background-color: #2a2d34; /* A deep slate-gray for the background, creating focus */
+  --secondary-background-color: #393d47; /* A softer gray for contrasting sections */
+  --text-color: #fff; /* Clean white text for readability on dark backgrounds */
 }
 
 a {
@@ -31,8 +47,8 @@ a:hover {
 
 body {
   margin: 0;
-  display:inline;
-  padding:0;
+  display: inline;
+  padding: 0;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
