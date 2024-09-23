@@ -31,13 +31,14 @@
   
 </div> -->
 <button on:click={handleClick2}>
-  <h2 id="shareText">{buttonText}</h2>
+        <h2 id="shareText">{buttonText}</h2>
+
 </button>
 
 <style>
   h2 {
-    font-size: clamp(2vmin, 5vw, 3vmax);
-    transform: scale(1.5);
+    font-size: xx-large;
+    /* transform: scale(1.5); */
   }
   button {
     z-index: 5;
@@ -45,27 +46,26 @@
     width: 63%;
     background-color: rgb(0, 197, 197);
     margin: 0;
-    position: absolute;
-    top: 50%;
+    position: relative;
+    /* top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     cursor: pointer;
-    border-radius: 1em;
     border: none;
+    padding: none;
+    outline: solid green;
   }
   div {
+    position: absolute;
     z-index: 0;
-    height: 50%;
-    width: 63%;
+    height: auto;
+    width: 100%;
     background-color: rgb(0, 197, 197);
     margin: 0;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     cursor: pointer;
     border-radius: 1em;
+    outline: solid bisque;
   }
 </style>

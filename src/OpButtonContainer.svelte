@@ -19,11 +19,12 @@
 <div class="container">
   {#each operationButtons as button, index}
     <ButtonWithStack
-      display={button.display}
-      operation={button.operation}
+      detail={{display: button.display,
+        operation: button.operation,
+        tries: button.tries,
+      }}
       {index}
       label={button.label}
-      tries={button.tries}
       ></ButtonWithStack
     >
   {/each}
@@ -35,7 +36,8 @@
     grid-template-columns: repeat(4, 1fr);
     user-select: none;
     pointer-events: relative;
-    row-gap: 1.2em;
+    row-gap: 1.5em;
+    column-gap: 2em;
     /* margin-bottom: 3em; */
   }
   button {
@@ -71,6 +73,7 @@
   @media screen and (max-width: 550px) {
     .container {
       grid-template-columns: repeat(2, 1fr);
+      row-gap: 1.75em;
     }
     button {
       transition: all 0.05s;

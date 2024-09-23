@@ -209,11 +209,16 @@
     }
   }
   button:disabled {
-    background-color: mediumvioletred;
+    background-color: transparent;
+    text-decoration: line-through;
+    box-shadow: 0px 0px 9px 0px darkslategray;
     text-decoration: line-through;
   }
   button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
+  }
+  :focus:not(:focus-visible) {
+    outline: 0;
   }
 </style>

@@ -1,10 +1,8 @@
 <script lang="ts">
-  export let display;
-  export let operation;
   export let index;
-  export let tries;
+  export let detail;
   export let label;
-  let gap = 8;
+  let gap = 11;
   // Reactive state for storing whether a button is tapped
   let tappedButton = -1;
 
@@ -21,21 +19,21 @@
 
 <div class="buttonStackContainer">
   <button
-    disabled={!display}
-    on:click={operation}
+    disabled={!detail.display}
+    on:click={detail.operation}
     on:touchstart={() => handleTouchStart(index)}
     on:touchend={handleTouchEnd}
     class:tapped={tappedButton === index}
     ><div class="buttonTextHolder"><p>{label}</p></div>
   </button>
-  {#if tries > 1}
+  {#if detail.tries > 1}
     <!-- content here -->
-    {#each { length: tries - 1 } as item, index2}
+    {#each { length: detail.tries - 1 } as item, index2}
       <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
       <button
         class="dupeButtons"
-        style="top: {(index2 + 1) * gap}px; z-index: {4 - index2}"
-        on:click={operation}
+        style="top: {(index2 + 1) * gap}px; z-index: {4 - index2};"
+        on:click={detail.operation}
         on:touchstart={() => handleTouchStart(index)}
         on:touchend={handleTouchEnd}
       ></button>
@@ -71,7 +69,7 @@
     color: white;
     min-width: 7em;
     user-select: none;
-    box-shadow: 0px 3px 1px -1px darkslategray;
+    box-shadow: 0px 4px 1px -1px darkslategray;
   }
   button p {
     font-size: medium;
@@ -81,8 +79,11 @@
   }
   @media (hover: hover) {
     button:hover:enabled {
-      background-color: #66cdaa;
-      /* transform: translateY(-5px); */
+      /* background-color: #66cdaa; */
+      box-shadow: none;
+      /* border: 2px solid white; */
+      box-shadow: 0px 2px 3px -1px darkslategray;
+      transform: translateY(-2px);
     }
   }
   button:disabled:not(.dupeButtons) {

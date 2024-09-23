@@ -58,7 +58,7 @@
     //   tryMap: {
     //     Square: 1,
     //     Double: 4,
-    //     Increment: 4,
+    //     Increment: 3,
     //     Decrement: 1,
     //   },
     // };
