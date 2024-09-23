@@ -6,7 +6,7 @@
   import Game777 from "./Game777.svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
   let useCookies = false;
-
+  let viewportHeight = 700;
   let questions: Question[] = [];
   let todaysQuestion: Question | null = null;
   let index: number | null = null;
@@ -27,7 +27,10 @@
     questions = await response.json();
     selectTodaysQuestion();
   }
-
+  function loadHeight() {
+    viewportHeight = window.screen.availHeight;
+    console.log(viewportHeight);
+  }
   async function loadCookies() {
     playedToday = (await localStorage.getItem("playedToday")) == "true"; //comes back as a string bool
     if (playedToday == true) {
@@ -87,11 +90,12 @@
   onMount(() => {
     loadQuestions();
     loadCookies();
+    loadHeight();
   });
   // };
 </script>
 
-<div>
+<div style="height: {viewportHeight -100}px">
   {#if todaysQuestion}
     <!-- Render the Game component and pass today's question as a prop -->
     {#if playedToday == true && useCookies}
@@ -118,5 +122,6 @@
     flex-direction: column;
     place-items: center;
     outline: dotted violet;
+    /* position:absolute; */
   }
 </style>

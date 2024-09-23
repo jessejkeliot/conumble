@@ -46,19 +46,19 @@
     position: absolute;
     background-color: var(--secondary-color);
     user-select: none;
-  }
+  } 
   .buttonStackContainer {
     display: flex;
     flex-direction: column;
     position: relative;
   }
   button {
-    height: 3.5em;
+    height: 4.5em;
     z-index: 5;
     border-radius: 8px;
     border: 1px solid transparent;
     width: min-content;
-    padding: 1em 1.6em;
+    /* padding: 1em 1.6em; */
     max-width: 30%;
     font-size: 1em;
     font-weight: 500;
@@ -68,7 +68,7 @@
     margin: 0.4em;
     transition: all 0.4s;
     color: var(--text-color);
-    min-width: 7em;
+    min-width: 4.5em;
     user-select: none;
     box-shadow: 0px 4px 1px -1px var(--secondary-background-color);
   }

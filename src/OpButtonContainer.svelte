@@ -36,8 +36,8 @@
     grid-template-columns: repeat(4, 1fr);
     user-select: none;
     pointer-events: relative;
-    row-gap: 1.5em;
-    column-gap: 2em;
+    gap: 3em;
+
     /* margin-bottom: 3em; */
   }
   button {
@@ -73,7 +73,7 @@
   @media screen and (max-width: 550px) {
     .container {
       grid-template-columns: repeat(2, 1fr);
-      row-gap: 1.75em;
+      row-gap: 3em;
     }
     button {
       transition: all 0.05s;

@@ -51,7 +51,8 @@ body {
   padding: 0;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: none;
   box-sizing: border-box;
 }
 

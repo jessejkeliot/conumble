@@ -1,11 +1,11 @@
 <script>
-    export let fontSize = 0.2;
+    export let fontSize = 20;
     export let size = 1;
     export let value;
     export let color;
 </script>
 
-<h1>{value}</h1>
+<h1 style="font-size: {fontSize}px">{value}</h1>
 <style>
     div {
         outline: dotted gold;

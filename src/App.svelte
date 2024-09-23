@@ -38,16 +38,20 @@
     };
 </script>
 <!-- changed for debuggin  -->
-{#if true} 
+ <!-- playedEver -->
+{#if false} 
 <HelpPageDraft></HelpPageDraft>
 {/if}
-
 <TopBar></TopBar>
 <div class="DynamicGameUIContainer">
   <div><QaProvider /></div>
 </div>
-
 <style>
+  /* .whole {
+    overflow:hidden;
+    height: 80vh;
+  } */
+
   .DynamicGameUIContainer {
     margin: 0;
     display: flex;
