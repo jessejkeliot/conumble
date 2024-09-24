@@ -44,6 +44,7 @@
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.61);
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     height: 120vh;
     width: 100vw;
     display: flex;

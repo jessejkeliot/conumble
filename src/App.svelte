@@ -7,6 +7,7 @@
   import { getTimeFromFirstConumble } from "./timeFunction.js";
   import HelpPage from "./HelpPage.svelte";
   import HelpPageDraft from "./HelpPageDraft.svelte";
+  import { blur } from "svelte/transition";
   const playedEver = (localStorage.getItem("lastQuestionPlayed")) != null;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
@@ -23,8 +24,10 @@
     }
   });
   let popupOpen = false;
-  function handleMessage(event: Event) {
-    popupOpen = true;
+  let blurBackground = false;
+  
+  function handleBlur() {
+    blurBackground = !blurBackground;
   }
   const easyQuestion = {
       startValue: 4,
@@ -61,8 +64,8 @@
     min-width: 320px;
     box-sizing: border-box;
     background-color: var(--background-color);
-    outline: solid black;
-    height: 80vh;
+    outline: solid blueviolet;
+    height: 79vh;
     overflow:hidden;
   }
   @media screen and (min-width: 768px) {

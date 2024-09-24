@@ -3,6 +3,7 @@
   import { quintOut } from "svelte/easing";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
   import ShareWidget from "./ShareWidget.svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   export let open;
   export let attemptsLeft;
   export let gameState;
@@ -24,6 +25,11 @@
 
     return ord;
   }
+  const dispatch = createEventDispatcher();
+  onMount(() =>{
+    dispatch('messageblur');
+  }
+);
 </script>
 
 {#if open}
@@ -49,14 +55,20 @@
 
 <style>
   /* Centering the flex container on the screen */
+  
   .fcontainer {
-    outline: solid blue;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    /* outline: solid blue; */
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh; /* Full viewport height */
+    height: 100%; /* Full viewport height */
+    overflow: hidden;
   }
 
   /* Grid container setup */
@@ -117,6 +129,10 @@
     .gridcontainer {
       width: 80%;
       height: 90%;
+
+    }
+    .fcontainer {
+        overflow: hidden;
     }
   }
 
@@ -124,6 +140,11 @@
     .gridcontainer {
       width: 90%;
       height: 80%;
+    }
+  }
+  @media (max-width: 762px) {
+    .fcontainer {
+        /* height: ; */
     }
   }
 </style>

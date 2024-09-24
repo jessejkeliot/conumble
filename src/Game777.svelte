@@ -229,7 +229,7 @@
 <style>
   .gamenotifcontainer {
     display: flex;
-    justify-content: center; /* Aligns items horizontally to the center */
+    justify-content: center;
     z-index: 1001;
   }
   .target {
