@@ -34,8 +34,7 @@
   .griditem {
     /* outline: solid red; */
     width: min-content;
-    font-size: 3em;
-
+    font-size: 2em;
     /* margin: 0.5em; */
   }
   #help {
@@ -65,10 +64,11 @@
   .flexcontainer {
     display: flex;
     flex-direction: row;
-    height: 10vh;
+    height: 5vh;
     place-items: center;
     justify-content: space-between;
     max-width: 768px;
+    width: 100vw;
     background-color: var(--secondary-color);
   }
   @media screen and (min-width: 768px) {
@@ -87,6 +87,9 @@
       gap: 15vw;
       font-size: 1em;
       max-width: none;
+    }
+    .griditem {
+        font-size: 3.5em;
     }
   }
 </style>

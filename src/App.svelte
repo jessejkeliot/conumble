@@ -54,7 +54,7 @@
 
   .DynamicGameUIContainer {
     margin: 0;
-    display: flex;
+    /* display: flex; */
     padding: 20px;
     justify-content: center;
     min-width: 320px;
