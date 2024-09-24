@@ -2,7 +2,7 @@
   import type { Question, TryMap } from "./types";
   import OpButtonContainer from "./OpButtonContainer.svelte";
   import FinishedPopup from "./FinishedPopup.svelte";
-  import { fade, fly } from "svelte/transition";
+  import { fade, fly, scale } from "svelte/transition";
   import TopBar from "./TopBar.svelte";
   import { createEventDispatcher, onMount } from "svelte";
   import Counter from "./Counter.svelte";
@@ -230,6 +230,7 @@
   .gamenotifcontainer {
     display: flex;
     justify-content: center; /* Aligns items horizontally to the center */
+    z-index: 1001;
   }
   .target {
     transform: scale(1.2, 1.2);

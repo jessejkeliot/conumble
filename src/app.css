@@ -27,12 +27,12 @@
   --background-color: #1b5e20; /* A warm, light tan similar to the Scrabble board background */
   --secondary-background-color: #795548; /* A soft brown for cards or sections, inspired by Scrabble's wooden tile holders */
 
-  --primary-color: ; /* A bright coral for main interactive elements */
+  --primary-color: #98d2eb; /* A bright coral for main interactive elements */
   --primary-color-selected: #e0524a; /* A darker coral for active or selected states */
-  --secondary-color: #5922F2; /* A vibrant, energizing green for secondary elements */
-  --secondary-color-selected: #17821b;
-  --background-color: #1a082a; /* A deep slate-gray for the background, creating focus */
-  --secondary-background-color: #393d47; /* A softer gray for contrasting sections */
+  --secondary-color: #5921f2; /* A vibrant, energizing green for secondary elements */
+  --secondary-color-selected: hwb(282 8% 67%);
+  --background-color: hsl(272, 68%, 10%); /* A deep slate-gray for the background, creating focus */
+  --secondary-background-color: #8E0535; /* A softer gray for contrasting sections */
   --text-color: #f9eff4; /* Clean white text for readability on dark backgrounds */
 }
 

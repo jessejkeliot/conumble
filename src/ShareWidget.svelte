@@ -31,20 +31,22 @@
   
 </div> -->
 <button on:click={handleClick2}>
-        <h2 id="shareText">{buttonText}</h2>
-
+    <h2 id="shareText">{buttonText}</h2>
 </button>
 
 <style>
   h2 {
+    color: var(--text-color);
     font-size: xx-large;
+    padding: 0;
+    margin: 0;
     /* transform: scale(1.5); */
   }
   button {
     z-index: 5;
     height: 50%;
     width: 63%;
-    background-color: rgb(0, 197, 197);
+    background-color: var(--primary-color-selected);
     margin: 0;
     position: relative;
     /* top: 50%;
@@ -54,7 +56,7 @@
     cursor: pointer;
     border: none;
     padding: none;
-    outline: solid green;
+    outline: solid 3px var(--secondary-color);
   }
   div {
     position: absolute;

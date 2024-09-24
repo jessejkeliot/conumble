@@ -122,6 +122,7 @@
     flex-direction: column;
     place-items: center;
     outline: dotted violet;
+    height: 900px;
     /* position:absolute; */
   }
 </style>

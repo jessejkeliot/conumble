@@ -54,12 +54,20 @@
 
   .DynamicGameUIContainer {
     margin: 0;
-    /* display: flex; */
+    /* display: inline; */
+    /* flex-direction: column; */
     padding: 20px;
     justify-content: center;
     min-width: 320px;
     box-sizing: border-box;
     background-color: var(--background-color);
-    /* outline: solid white; */
+    outline: solid black;
+    height: 80vh;
+    overflow:hidden;
+  }
+  @media screen and (min-width: 768px) {
+    .DynamicGameUIContainer{
+    height: 90vh;
+  }
   }
 </style>

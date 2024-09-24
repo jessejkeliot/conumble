@@ -65,7 +65,7 @@
     position: fixed;
     width: 60%;
     height: 80%;
-    background-color: slategray;
+    background-color: var(--secondary-background-color);
     display: flex;
     flex-direction: column;
     grid-template-rows: repeat(5, 1fr);
@@ -78,8 +78,8 @@
     position: relative;
     /* border-bottom: 0.3em solid black; */
     /* border-radius: inherit; */
-    background-color: slategray;
-    outline: solid red;
+    background-color: var(--secondary-background-color);
+    outline: solid rgb(255, 64, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +101,7 @@
 
   #emojirep {
     grid-row: 2 / 4;
-    background-color: darkcyan;
+    background-color: var(--primary-color-selected);
     min-height: 30%;
   }
 

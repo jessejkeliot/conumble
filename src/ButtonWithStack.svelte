@@ -65,12 +65,12 @@
     font-family: inherit;
     background-color: var(--secondary-color);
     cursor: pointer;
-    margin: 0.4em;
+    /* margin: 0.4em; */
     transition: all 0.4s;
     color: var(--text-color);
     min-width: 4.5em;
     user-select: none;
-    box-shadow: 0px 4px 1px -1px var(--secondary-background-color);
+    box-shadow: 0px 4px 1px -1px var(--primary-color);
   }
   button p {
     font-size: medium;
@@ -83,17 +83,17 @@
       background-color: var(--secondary-color-selected);
       box-shadow: none;
       /* border: 2px solid white; */
-      box-shadow: 0px 2px 3px -1px var(--secondary-background-color);
+      box-shadow: 0px 2px 3px -1px var(--primary-color);
       transform: translateY(-2px);
     }
   }
   button:disabled:not(.dupeButtons) {
     background-color: transparent;
     text-decoration: line-through;
-    box-shadow: 0px 0px 9px 0px var(--secondary-background-color);
+    box-shadow: 0px 0px 9px 0px var(--primary-color);
   }
   button:disabled.dupeButtons {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
   }
   button:focus,
   button:focus-visible {
@@ -106,9 +106,14 @@
   @media screen and (max-width: 550px) {
     button {
       transition: all 0.05s;
+      min-width: 3.5em;
+        height: 3.5em;
     }
     button:active:enabled {
       background-color: var(--secondary-color-selected);
     }
+  }
+  @media screen and (min-width: 768px) {
+    
   }
 </style>
