@@ -31,20 +31,16 @@
     <div class="gridcontainer">
       <div class="griditem" id="congratulations">
         <h3>
-          congratulations on completing the <span style="font-style: italic;"
-            >{questionIndex}{getOrdinal(questionIndex)}</span
-          > conumble
+          congratulations on completing the <span style="font-style: italic;">{questionIndex}{getOrdinal(questionIndex)}</span> conumble
         </h3>
       </div>
-      <div class="griditem" id="emojirep"></div>
+      <div class="griditem" id="emojirep">aksdf</div>
       <div class="griditem" id="sharepage">
         <ShareWidget resultRepresentation={"gamer"} />
       </div>
       <div class="griditem" id="nextconumble">
         <h3>
-          come back in {1440 -
-            Math.floor((getTimeFromFirstConumble() / 6e4) % 1440)} minutes for the
-          next conumble
+          come back in {1440 - Math.floor((getTimeFromFirstConumble() / 6e4) % 1440)} minutes for the next conumble
         </h3>
       </div>
     </div>
@@ -52,38 +48,36 @@
 {/if}
 
 <style>
-    .fcontainer {
-        outline: solid blue;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        top: 45vh;
-    }
-  .gridcontainer {
-    z-index: 7;
-    position: fixed;
-    width: 60%;
-    height: 80%;
-    background-color: var(--secondary-background-color);
-    display: flex;
-    flex-direction: column;
-    grid-template-rows: repeat(5, 1fr);
-    margin-right: auto;
-    border: 0.2em solid black;
-    /* border-radius: 2em; */
-  }
-
-  .griditem {
-    position: relative;
-    /* border-bottom: 0.3em solid black; */
-    /* border-radius: inherit; */
-    background-color: var(--secondary-background-color);
-    outline: solid rgb(255, 64, 0);
+  /* Centering the flex container on the screen */
+  .fcontainer {
+    outline: solid blue;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+  }
+
+  /* Grid container setup */
+  .gridcontainer {
+    z-index: 7;
+    position: relative; /* Keep it in normal document flow */
+    width: 60%;
+    height: 80%;
+    background-color: var(--secondary-background-color);
+    display: grid;
+    grid-template-rows: auto 1fr auto auto; /* Second row (#emojirep) grows to fill available space */
+    border: 0.2em solid black;
+  }
+
+  /* Grid item setup */
+  .griditem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-background-color);
+    outline: solid rgb(255, 64, 0);
     font-size: x-large;
   }
 
@@ -91,33 +85,34 @@
     margin: 0;
     text-align: center;
     width: 100%;
-    /* line-height: 1.2; Adjusts line spacing */
   }
 
+  /* Specific grid item styles */
   #congratulations {
     grid-row: 1;
     z-index: 2;
   }
 
   #emojirep {
-    grid-row: 2 / 4;
+    grid-row: 2;
     background-color: var(--primary-color-selected);
-    min-height: 30%;
+    /* Takes remaining space due to grid-template-rows */
   }
 
   #sharepage {
-    min-height: 20%;
-    grid-row: 4;
+    grid-row: 3;
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0;
   }
 
   #nextconumble {
-    grid-row: 5;
+    grid-row: 4;
     border-bottom: none;
   }
 
-  /* Responsive behavior */
+  /* Responsive behavior for smaller devices */
   @media (max-width: 768px) {
     .gridcontainer {
       width: 80%;
