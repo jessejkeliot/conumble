@@ -106,9 +106,10 @@
         {initialButtonUsesMap}
         {gameState}
         {attemptsUsed}
+        on:copyevent
       />
     {:else}
-      <Game777 {todaysQuestion} questionIndex={index} />
+      <Game777 {todaysQuestion} questionIndex={index} on:copyevent/>
     {/if}
   {:else}
     <!-- Show a loading message or spinner while the question is being fetched -->

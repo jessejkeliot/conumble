@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+
   export let resultRepresentation: string;
   let buttonText: string = "share 📤";
+  const dispatch = createEventDispatcher();
   function handleClick(): void {
     buttonText = "failed to copy! ❌";
     const textBlob = new Blob([resultRepresentation], { type: 'text/plain' });
@@ -15,14 +18,8 @@
       });
   }
   function handleClick2() {
-    navigator.clipboard.writeText(resultRepresentation);
+    dispatch("copyevent", { text: resultRepresentation});
     buttonText = "copied! 🔗";
-    console.warn(navigator.canShare());
-    try {
-        navigator.share({ title: "conumble", text: resultRepresentation });
-    } catch (error) {
-        navigator.clipboard.writeText(resultRepresentation);
-    }
   }
 </script>
 
@@ -30,7 +27,7 @@
 <!-- <div role="button" class="ShareButtonContainer" on:click={handleClick}>
   
 </div> -->
-<button on:click={handleClick2}>
+<button on:click={handleClick2} on:touchstart|preventDefault={handleClick2} on:touchend={() => console.log("touch ended")}>
     <h2 id="shareText">{buttonText}</h2>
 </button>
 

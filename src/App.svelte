@@ -8,6 +8,7 @@
   import HelpPage from "./HelpPage.svelte";
   import HelpPageDraft from "./HelpPageDraft.svelte";
   import { blur } from "svelte/transition";
+  import { copy } from "./timeFunction.js";
   const playedEver = (localStorage.getItem("lastQuestionPlayed")) != null;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
@@ -39,6 +40,10 @@
         Decrement: 0,
       },
     };
+  function doCopy(event){
+    copy(event.detail.text);
+    console.log("Copied", event.detail.text);
+  }
 </script>
 <!-- changed for debuggin  -->
  <!-- playedEver -->
@@ -47,14 +52,14 @@
 {/if}
 <TopBar></TopBar>
 <div class="DynamicGameUIContainer">
-  <div><QaProvider /></div>
+  <div><QaProvider on:copyevent={doCopy}/></div>
 </div>
 <style>
   /* .whole {
     overflow:hidden;
     height: 80vh;
   } */
-
+  @media screen and (max-width: 768px){
   .DynamicGameUIContainer {
     margin: 0;
     /* display: inline; */
@@ -67,8 +72,8 @@
     outline: solid blueviolet;
     height: 79vh;
     overflow:hidden;
-  }
-  @media screen and (min-width: 768px) {
+  }}
+  @media screen and (min-width: 768px) and (min-height: 720px){
     .DynamicGameUIContainer{
     height: 90vh;
   }

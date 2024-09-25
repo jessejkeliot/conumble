@@ -187,6 +187,7 @@
       attemptsLeft={attemptsUsed}
       {userInputMap}
       {questionIndex}
+      on:copyevent
     />
   </div>
 {/if}

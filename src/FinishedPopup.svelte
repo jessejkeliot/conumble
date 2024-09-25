@@ -42,7 +42,7 @@
       </div>
       <div class="griditem" id="emojirep">aksdf</div>
       <div class="griditem" id="sharepage">
-        <ShareWidget resultRepresentation={"gamer"} />
+        <ShareWidget resultRepresentation={"gamer"} on:copyevent/>
       </div>
       <div class="griditem" id="nextconumble">
         <h3>
@@ -142,9 +142,9 @@
       height: 80%;
     }
   }
-  @media (max-width: 762px) {
-    .fcontainer {
-        /* height: ; */
+  @media (min-width: 762px) {
+    .griditem {
+        padding: 12px 0;
     }
   }
 </style>
