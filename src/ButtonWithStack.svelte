@@ -32,7 +32,7 @@
       <!-- <div class="dupeButtons" style="top: {(index2 + 1) * 10}px;"></div> -->
       <button
         class="dupeButtons"
-        style="top: {(index2 + 1) * gap}px; z-index: {4 - index2};"
+        style="top: {(index2 + 1) * gap}px; z-index: {10 - index2};"
         on:click={detail.operation}
         on:touchstart={() => handleTouchStart(index)}
         on:touchend={handleTouchEnd}
@@ -54,7 +54,7 @@
   }
   button {
     height: 4.5em;
-    z-index: 5;
+    z-index: 11;
     border-radius: 8px;
     border: 1px solid transparent;
     width: min-content;

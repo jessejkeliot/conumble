@@ -27,7 +27,7 @@
   --background-color: #1b5e20; /* A warm, light tan similar to the Scrabble board background */
   --secondary-background-color: #795548; /* A soft brown for cards or sections, inspired by Scrabble's wooden tile holders */
 
-  --primary-color: #98d2eb; /* A bright coral for main interactive elements */
+  --secondary-background-color-selected: #6b0428; /* A bright coral for main interactive elements */
   --primary-color-selected: #e0524a; /* A darker coral for active or selected states */
   --secondary-color: #5921f2; /* A vibrant, energizing green for secondary elements */
   --secondary-color-selected: hwb(282 8% 67%);

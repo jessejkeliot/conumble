@@ -95,7 +95,7 @@
   // };
 </script>
 
-<div style="height: {viewportHeight -100}px">
+<div>
   {#if todaysQuestion}
     <!-- Render the Game component and pass today's question as a prop -->
     {#if playedToday == true && useCookies}
@@ -122,8 +122,7 @@
     display: flex;
     flex-direction: column;
     place-items: center;
-    outline: dotted violet;
-    height: 900px;
+    /* height: 900px; */
     /* position:absolute; */
   }
 </style>
