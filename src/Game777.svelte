@@ -25,7 +25,7 @@
   const answer: number = todaysQuestion.targetValue; //this all needs to be sent in before.
   export let startValue: number = todaysQuestion.startValue;
   export let initialButtonUsesMap = todaysQuestion.tryMap;
-  const noOfAttempts = 3;
+  const noOfAttempts = 4;
   let count: number = startValue;
   let buttonUsesMap: TryMap = { ...initialButtonUsesMap };
   export let attemptsUsed = 0;

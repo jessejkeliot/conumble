@@ -47,7 +47,7 @@
   }
 
   function handleClose() {
-    openTutorial = false;
+    openTutorial = !openTutorial;
   }
 </script>
 
@@ -56,7 +56,7 @@
 {#if !playedEver && openTutorial}
     <FirstTimePlayingPage on:close={handleClose}></FirstTimePlayingPage>
 {/if}
-<TopBar></TopBar>
+<TopBar on:helpclick={handleClose}></TopBar>
 <div class="DynamicGameUIContainer">
   <div><QaProvider on:copyevent={doCopy} /></div>
 </div>

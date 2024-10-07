@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { quintOut } from "svelte/easing";
-  import { getTimeFromFirstConumble } from "./timeFunction.js";
+  import { createGameRepresenation, getTimeFromFirstConumble } from "./timeFunction.js";
   import ShareWidget from "./ShareWidget.svelte";
   import { createEventDispatcher, onMount } from "svelte";
   export let open;
@@ -30,6 +30,9 @@
     dispatch('messageblur');
   }
 );
+const messages = ["trying", "", "", "completing"]
+const cmessage = messages[gameState];
+let delayIncrement = 100;
 </script>
 
 {#if open}
@@ -37,12 +40,17 @@
     <div class="gridcontainer">
       <div class="griditem" id="congratulations">
         <h3>
-          congratulations on completing the <span style="font-style: italic;">{questionIndex}{getOrdinal(questionIndex)}</span> conumble
+          congratulations on {cmessage} the <span style="font-style: italic;">{questionIndex}{getOrdinal(questionIndex)}</span> conumble
         </h3>
       </div>
-      <div class="griditem" id="emojirep">aksdf</div>
+      <div class="griditem" id="emojirep">
+        {#each Array.from(createGameRepresenation(attemptsLeft, gameState, questionIndex)) as letter, i (i)}
+        <p transition:fly={{ y: 200, duration: 2000, delay: i * delayIncrement }}>
+          {letter}
+        </p>
+      {/each}</div>
       <div class="griditem" id="sharepage">
-        <ShareWidget resultRepresentation={"gamer"} on:copyevent/>
+        <ShareWidget resultRepresentation={ questionIndex.toString() + getOrdinal(questionIndex)+ " conumble,\n" + createGameRepresenation(attemptsLeft, gameState, questionIndex)} on:copyevent/>
       </div>
       <div class="griditem" id="nextconumble">
         <h3>
@@ -108,7 +116,12 @@
   #emojirep {
     grid-row: 2;
     background-color: var(--primary-color-selected);
+    font-size: 12vw;
     /* Takes remaining space due to grid-template-rows */
+  }
+  #emojirep span {
+    display: inline-block;
+    opacity: 0;
   }
 
   #sharepage {
@@ -142,9 +155,12 @@
       height: 80%;
     }
   }
-  @media (min-width: 762px) {
+  @media (min-width: 832px) {
     .griditem {
         padding: 12px 0;
+    }
+    #emojirep {
+      font-size: 6em;
     }
   }
 </style>

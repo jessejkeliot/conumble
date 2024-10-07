@@ -51,3 +51,25 @@ export function copy(text) {
     });
     
 }
+
+export function createGameRepresenation(attemptsleft, gamestate, index) {
+    const character = "★";
+    const failcharacter = "☆";
+    const retries = 4;
+    if (gamestate==0) { //completely failed.
+        return failcharacter.repeat(retries+ 1);
+    }
+    else {
+    let rep = character;
+    for (let a = 0; a < retries; a++) {
+        if(a < attemptsleft){
+            rep += character;
+        }
+        else {
+            rep += failcharacter;
+        }
+        
+    }
+    return rep;
+}
+}

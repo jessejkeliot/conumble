@@ -6,8 +6,19 @@
   <div class="griditem" id="accordion">⚜️</div>
 </div> -->
 
+<script>
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
+  function onClickHelp() {
+    dispatch("helpclick")
+  }
+</script>
+
 <div class="flexcontainer">
-  <div class="griditem" id="help">?</div>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class="griditem" id="help" on:click={onClickHelp}>?</div>
   <div class="griditem" id="title">conumble</div>
   <div class="griditem" id="accordion">◉</div>
 </div>
