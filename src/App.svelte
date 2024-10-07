@@ -10,7 +10,8 @@
   import { blur } from "svelte/transition";
   import { copy } from "./timeFunction.js";
   import FirstTimePlayingPage from "./FirstTimePlayingPage.svelte";
-  const playedEver = localStorage.getItem("lastQuestionPlayed") != null;
+  let playedEver = localStorage.getItem("lastQuestionPlayed") != null;
+  let openTutorial = true;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
     const index: number = Math.floor(timeDiff / 864e5); //daily
@@ -44,12 +45,16 @@
     copy(event.detail.text);
     console.log("Copied", event.detail.text);
   }
+
+  function handleClose() {
+    openTutorial = false;
+  }
 </script>
 
 <!-- changed for debuggin  -->
 <!-- playedEver -->
-{#if !playedEver}
-    <FirstTimePlayingPage></FirstTimePlayingPage>
+{#if !playedEver && openTutorial}
+    <FirstTimePlayingPage on:close={handleClose}></FirstTimePlayingPage>
 {/if}
 <TopBar></TopBar>
 <div class="DynamicGameUIContainer">
