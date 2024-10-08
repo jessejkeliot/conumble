@@ -1,7 +1,7 @@
 // @ts-nocheck
 export function getTimeFromFirstConumble() {
   const today = new Date();
-  const startDate = new Date("2024-10-8");
+  const startDate = new Date("2024-10-08");
   const timeDiff = today.valueOf() - startDate.valueOf(); //in milliseconds
   return timeDiff;
 }
