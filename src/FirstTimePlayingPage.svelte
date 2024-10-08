@@ -6,7 +6,7 @@
   import { generateQuestion } from "./generateRandomQ";
   import { createEventDispatcher } from "svelte";
   import { fade, fly, scale } from "svelte/transition";
-  import { quadIn } from "svelte/easing";
+  import { cubicIn, quadIn, quartIn, sineIn } from "svelte/easing";
   import { currentQuestion } from "./stores";
 
   let playedEver = localStorage.getItem("lastQuestionPlayed") != null;
@@ -45,10 +45,10 @@
 out:fade class="backgroundblur" on:click={handleClose}>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class="textcontainer" in:scale={{ delay: 0, duration: 300 }}
+  <div class="textcontainer" in:scale={{ delay: 0, duration: 300, easing: sineIn}}
   out:scale>
     {#if playedEver}
-      <h2>So... this is you forget how to play conumble?</h2>
+      <h2>So... you forgot how to play conumble?</h2>
       {:else}
       <h2>So... this is your first time playing conumble?</h2>
     {/if}
@@ -95,6 +95,8 @@ out:fade class="backgroundblur" on:click={handleClose}>
     outline: solid var(--primary-color-selected);
     /* margin: 3% 0; */
     user-select: none;
+    max-width: 800px;
+    max-height: 600px;
   }
 
   .textdivider {

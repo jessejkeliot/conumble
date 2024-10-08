@@ -205,12 +205,12 @@
     tries: attempsLeft,
     display: retryEnabled,
   }}
-  label={"↩︎"}
+  label={"↻"}
   index={0}
 ></ButtonWithStack>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->
 <!-- <p>Operations Left: {operationsLeft}</p> -->
-<Counter color={eventColours[gameState]} value={count} fontSize={120}></Counter>
+<Counter state={gameState} value={count} fontSize={120}></Counter>
 
 <OpButtonContainer {operationButtons} />
 

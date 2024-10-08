@@ -1,11 +1,11 @@
-<script>
+<script lang=ts>
   export let fontSize = 20;
   export let size = 1;
   export let value;
-  export let color;
+  export let state: number;
 </script>
 
-<h1 style="font-size: {fontSize}px">{value}</h1>
+<h1 style="font-size: {fontSize}px" class="state{state}">{value}</h1>
 
 <style>
   div {
@@ -28,6 +28,14 @@
     -webkit-user-select: none;
   }
 
+
+  .state0 {
+    color: var(--background-color);
+    text-shadow: 0px 0px 30px var(--contrast-shadow-color);
+  }
+  .state3{
+    color: var(--secondary-color);
+  }
   @media screen and (min-width: 768px) {
     h1 {
       margin: 7.5% 0;

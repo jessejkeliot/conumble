@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { scale } from "svelte/transition";
+
   export let index;
   export let detail;
   export let label;
