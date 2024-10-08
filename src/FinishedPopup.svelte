@@ -30,7 +30,7 @@
     dispatch('messageblur');
   }
 );
-const messages = ["trying", "", "", "completing"]
+const messages = ["Well tried, better luck next time. That was the ", "", "", "You did it! Well done for completing the "]
 const cmessage = messages[gameState];
 let delayIncrement = 100;
 </script>
@@ -40,7 +40,7 @@ let delayIncrement = 100;
     <div class="gridcontainer">
       <div class="griditem" id="congratulations">
         <h3>
-          congratulations on {cmessage} the <span style="font-style: italic;">{questionIndex}{getOrdinal(questionIndex)}</span> conumble
+          {cmessage}<span style="font-style: italic;">{questionIndex}{getOrdinal(questionIndex)}</span> conumble
         </h3>
       </div>
       <div class="griditem" id="emojirep">
