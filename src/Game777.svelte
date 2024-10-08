@@ -184,7 +184,7 @@
     <FinishedPopup
       open={true}
       {gameState}
-      attemptsLeft={attemptsUsed}
+      attemptsLeft={attempsLeft}
       {userInputMap}
       {questionIndex}
       on:copyevent
@@ -205,7 +205,7 @@
     tries: attempsLeft,
     display: retryEnabled,
   }}
-  label={"🔄"}
+  label={"↩︎"}
   index={0}
 ></ButtonWithStack>
 <!-- When your count goes orange, the target should flash bold and then the count reset -->
@@ -260,7 +260,7 @@
   button:disabled {
     background-color: transparent;
     text-decoration: line-through;
-    box-shadow: 0px 0px 9px 0px var(--secondary-background-color);
+    box-shadow: 0px 0px 9px 0px var(--primary-background-color);
     text-decoration: line-through;
   }
   button:focus,

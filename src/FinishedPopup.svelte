@@ -85,10 +85,10 @@ let delayIncrement = 100;
     position: relative; /* Keep it in normal document flow */
     width: 60%;
     height: 80%;
-    background-color: var(--secondary-background-color);
+    background-color: var(--secondary-color);
     display: grid;
     grid-template-rows: auto 1fr auto auto; /* Second row (#emojirep) grows to fill available space */
-    border: 0.2em solid black;
+    /* border: 0.2em solid black; */
   }
 
   /* Grid item setup */
@@ -96,8 +96,8 @@ let delayIncrement = 100;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-background-color);
-    outline: solid rgb(255, 64, 0);
+    background-color: var(--secondary-color);
+    outline: solid 5px var(--secondary-color-selected);
     font-size: x-large;
   }
 
@@ -115,7 +115,7 @@ let delayIncrement = 100;
 
   #emojirep {
     grid-row: 2;
-    background-color: var(--primary-color-selected);
+    background-color: var(--secondary-color-selected);
     font-size: 12vw;
     /* Takes remaining space due to grid-template-rows */
   }

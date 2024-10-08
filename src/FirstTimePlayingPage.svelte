@@ -1,10 +1,15 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import Counter from "./Counter.svelte";
   import Target from "./Target.svelte";
   import { getTimeFromFirstConumble } from "./timeFunction";
   import { generateQuestion } from "./generateRandomQ";
   import { createEventDispatcher } from "svelte";
+  import { fade, fly, scale } from "svelte/transition";
+  import { quadIn } from "svelte/easing";
+  import { currentQuestion } from "./stores";
+
+  let playedEver = localStorage.getItem("lastQuestionPlayed") != null;
   const dispatch = createEventDispatcher();
   const pathLength = 5;
   const fakeQ = generateQuestion(pathLength);
@@ -12,13 +17,20 @@
   let currentIndex = 0;
   const numbers = fakeQ.numberPath;
   const operations = fakeQ.operationPath;
-  const target = numbers[numbers.length - 1];
+  let target: number;
+  let start: number;
+  const unsubscribe = currentQuestion.subscribe(value => {
+    target = value.targetValue;
+    start = value.startValue;
+  });
+  onDestroy(unsubscribe);
+
   function updateText() {
     currentIndex = (currentIndex + 1) % numbers.length; // cycle through the array
   }
   let interval: number;
   function handleClose() {
-    dispatch('close');
+    dispatch("close");
   }
   onMount(() => {
     interval = setInterval(updateText, intervalTime);
@@ -27,18 +39,25 @@
     return () => clearInterval(interval);
   });
 </script>
-
-<div class="backgroundblur">
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class="textcontainer" on:click={handleClose}>
-    <h2>So... this is your first time playing conumble?</h2>
+<div in:fade={{ delay: 0, duration: 200 , easing: quadIn}}
+out:fade class="backgroundblur" on:click={handleClose}>
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class="textcontainer" in:scale={{ delay: 0, duration: 300 }}
+  out:scale>
+    {#if playedEver}
+      <h2>So... this is you forget how to play conumble?</h2>
+      {:else}
+      <h2>So... this is your first time playing conumble?</h2>
+    {/if}
     <div class="textdivider"></div>
     <h3>In this game you will have a target:</h3>
     <Target targetValue={target}></Target>
     <div class="textdivider"></div>
     <h3>A starting number:</h3>
-    <h1>{numbers[1]}</h1>
+    <h1>{start}</h1>
 
     <h3>And some <i><b>buttons</b></i> to help you reach the target.</h3>
     <div class="textdivider"></div>
@@ -68,12 +87,12 @@
     position: relative; /* Keep it in normal document flow */
     width: 100%;
     height: 90%;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     display: flex;
     padding: none;
     place-items: center;
     flex-direction: column; /* Second row (#emojirep) grows to fill available space */
-    outline: solid var(--secondary-color-selected);
+    outline: solid var(--primary-color-selected);
     /* margin: 3% 0; */
     user-select: none;
   }
@@ -81,7 +100,7 @@
   .textdivider {
     width: 100%;
     height: 5px;
-    background-color: var(--secondary-color-selected);
+    background-color: var(--primary-color-selected);
     margin: 5% 0;
   }
 
@@ -108,7 +127,6 @@
       margin: 3% 0;
     }
     h1 {
-
     }
   }
 </style>

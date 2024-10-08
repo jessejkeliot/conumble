@@ -18,10 +18,14 @@
         width: 200px; */
   }
   h1 {
-    outline: dashed darkmagenta;
+    /* outline: dashed darkmagenta; */
+    text-shadow: 0px 5px 7px var(--contrast-shadow-color);
     color: var(--text-color);
     margin: 15% 0;
     /* font-size: initial; */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
   }
 
   @media screen and (min-width: 768px) {

@@ -41,12 +41,16 @@
     z-index: 1000; /* Keeps it above other content */
     gap: 15vw;
     font-size: 2em;
+    min-width: inherit;
   }
   .griditem {
     /* outline: solid red; */
     width: min-content;
     font-size: 2em;
     /* margin: 0.5em; */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
   }
   #help {
     margin-left: 0.1em;
@@ -80,7 +84,7 @@
     justify-content: space-between;
     max-width: 768px;
     width: 100vw;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
   }
   @media screen and (min-width: 768px) {
     .flexcontainer {

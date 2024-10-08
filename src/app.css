@@ -4,7 +4,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
+  color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--background-color);
 
@@ -27,15 +27,45 @@
   --background-color: #1b5e20; /* A warm, light tan similar to the Scrabble board background */
   --secondary-background-color: #795548; /* A soft brown for cards or sections, inspired by Scrabble's wooden tile holders */
 
-  --secondary-background-color-selected: #6b0428; /* A bright coral for main interactive elements */
-  --primary-color-selected: #e0524a; /* A darker coral for active or selected states */
-  --secondary-color: #5921f2; /* A vibrant, energizing green for secondary elements */
-  --secondary-color-selected: hwb(282 8% 67%);
-  --background-color: hsl(272, 68%, 10%); /* A deep slate-gray for the background, creating focus */
-  --secondary-background-color: #8E0535; /* A softer gray for contrasting sections */
+  --primary-color: #5921f2; /* A vibrant, energizing green for secondary elements */
+  --primary-color-selected: #411454;
+  --background-color: #1b082b; /* A deep slate-gray for the background, creating focus */
   --text-color: #f9eff4; /* Clean white text for readability on dark backgrounds */
-}
 
+
+  
+  --primary-color: #411454; /* A vibrant, energizing purple for primary elements */
+  --primary-color-selected: #411454; /* A rich, deep purple for selected or active states */
+  --background-color: #1b082b; /* A deep slate-gray/purple for the background, creating focus */
+  --text-color: #f9eff4; /* Clean white text for readability on dark backgrounds */
+  --shadow-color: hwb(281 40% 20%);
+  --contrast-shadow-color: var(--shadow-color);
+  --secondary-color: #D4AF37; /* A luxurious gold for celebratory or accent elements */
+  --secondary-color-selected: #B38B00; /* A deeper bronze-gold for hover/active states on secondary elements */
+
+}
+@media (prefers-color-scheme: light) {
+  :root {
+
+  --primary-color: #b477fb; /* A vibrant, energizing purple for primary elements */
+  --primary-color-selected: #411454; /* A rich, deep purple for selected or active states */
+  --background-color: hwb(273 79% 0%); /* A deep slate-gray/purple for the background, creating focus */
+  --text-color: #f9eff4; /* Clean white text for readability on dark backgrounds */
+  --shadow-color: #ac66cc;
+  --secondary-color: #D4AF37; /* A luxurious gold for celebratory or accent elements */
+  --secondary-color-selected: #B38B00; /* A deeper bronze-gold for hover/active states on secondary elements */
+
+  --primary-color: hsl(266, 70%, 79%); /* A vibrant, energizing purple for primary elements */
+  --primary-color-selected: #411454; /* A rich, deep purple for selected or active states */
+  --background-color: #f4f0fa; /* A soft, light lavender-tinted background to maintain the theme */
+  --text-color: #1b082b; /* Deep slate-gray/purple for readability on light backgrounds */
+  --shadow-color: rgba(0, 0, 0, 0.15); /* Soft, subtle shadow for depth on light mode */
+  --contrast-shadow-color: var(--primary-color);
+  --secondary-color: #D4AF37; /* A luxurious gold for celebratory or accent elements */
+  --secondary-color-selected: #B38B00; /* A deeper bronze-gold for hover/active states on secondary elements */
+
+}
+}
 a {
   font-weight: 500;
   color: #646cff;

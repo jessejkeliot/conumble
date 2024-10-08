@@ -44,7 +44,7 @@
 <style>
   .dupeButtons {
     position: absolute;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     user-select: none;
   } 
   .buttonStackContainer {
@@ -63,14 +63,14 @@
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     cursor: pointer;
     /* margin: 0.4em; */
     transition: all 0.4s;
     color: var(--text-color);
     min-width: 4.5em;
     user-select: none;
-    box-shadow: 0px 4px 1px -1px var(--primary-color);
+    box-shadow: 0px 4px 1px -1px var(--shadow-color);
   }
   button p {
     font-size: medium;
@@ -80,10 +80,10 @@
   }
   @media (hover: hover) {
     button:hover:enabled {
-      background-color: var(--secondary-color-selected);
+      background-color: var(--primary-color-selected);
       box-shadow: none;
       /* border: 2px solid white; */
-      box-shadow: 0px 2px 3px -1px var(--primary-color);
+      box-shadow: 0px 2px 3px -1px var(--shadow-color);
       transform: translateY(-2px);
     }
   }
@@ -110,7 +110,7 @@
         height: 3.5em;
     }
     button:active:enabled {
-      background-color: var(--secondary-color-selected);
+      background-color: var(--primary-color-selected);
     }
   }
   @media screen and (min-width: 768px) {

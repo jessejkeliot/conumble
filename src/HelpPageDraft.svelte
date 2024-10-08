@@ -54,7 +54,7 @@
   }
   .box {
     border-radius: 20px;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     width: 80%;
     max-width: 350px;
     height: 70%;
@@ -67,7 +67,7 @@
   .textdivider {
     width: 100%;
     height: 3px;
-    background-color: var(--secondary-color-selected);
+    background-color: var(--primary-color-selected);
     margin: 0.9vh 0;
   }
   button {

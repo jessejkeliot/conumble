@@ -5,7 +5,8 @@
   import { currentQuestion } from "./stores";
   import Game777 from "./Game777.svelte";
   import { getTimeFromFirstConumble } from "./timeFunction.js";
-  let useCookies = false;
+  
+  let useCookies = true;
   let viewportHeight = 700;
   let questions: Question[] = [];
   let todaysQuestion: Question | null = null;
@@ -55,6 +56,8 @@
     //console.log(questions[index].startValue);
     //console.log(index);
     todaysQuestion = questions[index];
+    currentQuestion.set(todaysQuestion);
+
     // todaysQuestion = {
     //   startValue: 3,
     //   targetValue: 45,

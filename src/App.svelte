@@ -11,7 +11,7 @@
   import { copy } from "./timeFunction.js";
   import FirstTimePlayingPage from "./FirstTimePlayingPage.svelte";
   let playedEver = localStorage.getItem("lastQuestionPlayed") != null;
-  let openTutorial = true;
+  let openTutorial = !playedEver;
   onMount(() => {
     const timeDiff: number = getTimeFromFirstConumble();
     const index: number = Math.floor(timeDiff / 864e5); //daily
@@ -53,14 +53,14 @@
 
 <!-- changed for debuggin  -->
 <!-- playedEver -->
-{#if !playedEver && openTutorial}
-    <FirstTimePlayingPage on:close={handleClose}></FirstTimePlayingPage>
-{/if}
+
 <TopBar on:helpclick={handleClose}></TopBar>
 <div class="DynamicGameUIContainer">
   <div><QaProvider on:copyevent={doCopy} /></div>
 </div>
-
+{#if openTutorial}
+    <FirstTimePlayingPage on:close={handleClose}></FirstTimePlayingPage>
+{/if}
 <style>
   /* .whole {
     overflow:hidden;
@@ -78,7 +78,8 @@
       background-color: var(--background-color);
       outline: solid blueviolet;
       height: 79vh;
-      overflow: hidden;
+      /* overflow: hidden; */
+      min-width: 300px;
     }
   }
   @media screen and (min-width: 768px) and (min-height: 720px) {

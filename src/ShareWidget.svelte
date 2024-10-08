@@ -43,7 +43,7 @@
     z-index: 5;
     height: 100%;
     width: 63%;
-    background-color: var(--primary-color-selected);
+    background-color: var(--secondary-color-selected);
     margin: 0;
     position: relative;
     /* top: 50%;
@@ -53,7 +53,7 @@
     cursor: pointer;
     border: none;
     padding: none;
-    outline: solid 3px rgb(255, 64, 0);
+    outline: solid 3px var(--secondary-color-selected);
   }
   div {
     position: absolute;
