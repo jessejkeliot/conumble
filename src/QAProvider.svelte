@@ -24,7 +24,7 @@
   let attemptsUsed: number;
   // Fetch the JSON data on component mount
   async function loadQuestions() {
-    const response = await fetch("/questions.json");
+    const response = await fetch(`${import.meta.env.BASE_URL}questions.json`);
     questions = await response.json();
     selectTodaysQuestion();
   }
