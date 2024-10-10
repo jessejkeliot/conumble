@@ -27,7 +27,7 @@
 <!-- <div role="button" class="ShareButtonContainer" on:click={handleClick}>
   
 </div> -->
-<button on:click={handleClick} on:touchstart={handleClick2} on:touchend={() => console.log("touch ended")}>
+<button on:click={handleClick2} on:touchstart={handleClick2} on:touchend={() => console.log("touch ended")}>
     <h2 id="shareText">{buttonText}</h2>
 </button>
 
