@@ -18,7 +18,7 @@
       });
   }
   function handleClick2() {
-    dispatch("copyevent", { text: resultRepresentation});
+    navigator.clipboard.writeText(resultRepresentation);
     buttonText = "copied! 🔗";
   }
 </script>
@@ -27,7 +27,7 @@
 <!-- <div role="button" class="ShareButtonContainer" on:click={handleClick}>
   
 </div> -->
-<button on:click={handleClick2} on:touchstart={handleClick2} on:touchend={() => console.log("touch ended")}>
+<button on:click={handleClick} on:touchstart={handleClick2} on:touchend={() => console.log("touch ended")}>
     <h2 id="shareText">{buttonText}</h2>
 </button>
 
@@ -53,7 +53,7 @@
     cursor: pointer;
     border: none;
     padding: none;
-    outline: solid 3px var(--secondary-color-selected);
+    outline: solid 4px var(--secondary-color-selected);
   }
   div {
     position: absolute;

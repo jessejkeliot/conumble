@@ -31,7 +31,7 @@
       <div class="textdivider"></div>
       <p>Which do things to</p>
 
-      <Counter {value} fontSize={55} color></Counter>
+      <Counter {value} fontSize={55}></Counter>
       <h3>The running counter</h3> 
   </div>
 </div>

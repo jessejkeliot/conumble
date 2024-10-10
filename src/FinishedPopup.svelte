@@ -30,7 +30,7 @@
     dispatch('messageblur');
   }
 );
-const messages = ["Well tried.\nBetter luck next time", "", "", "You did it! Well done"]
+const messages = ["Well tried.\nBetter luck next time", "", "", "You did it! Well done!"];
 const cmessage = messages[gameState];
 let delayIncrement = 100;
 </script>
@@ -54,7 +54,7 @@ let delayIncrement = 100;
       </div>
       <div class="griditem" id="nextconumble">
         <h3>
-          come back in {1440 - Math.floor((getTimeFromFirstConumble() / 6e4) % 1440)} minutes for the next conumble
+          Come back in {1440 - Math.floor((getTimeFromFirstConumble() / 6e4) % 1440)} minutes for the next conumble
         </h3>
       </div>
     </div>
@@ -117,6 +117,7 @@ let delayIncrement = 100;
     grid-row: 2;
     background-color: var(--secondary-color-selected);
     font-size: 12vw;
+    color: var(--primary-color);
     /* Takes remaining space due to grid-template-rows */
   }
   #emojirep span {

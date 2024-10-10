@@ -38,10 +38,11 @@
   --primary-color-selected: #411454; /* A rich, deep purple for selected or active states */
   --background-color: #1b082b; /* A deep slate-gray/purple for the background, creating focus */
   --text-color: #f9eff4; /* Clean white text for readability on dark backgrounds */
-  --shadow-color: hwb(281 40% 20%);
+  --shadow-color: #ac66cc;
   --contrast-shadow-color: var(--shadow-color);
-  --secondary-color: #D4AF37; /* A luxurious gold for celebratory or accent elements */
-  --secondary-color-selected: #B38B00; /* A deeper bronze-gold for hover/active states on secondary elements */
+  --secondary-color: #838996; /* A luxurious gold for celebratory or accent elements */
+  --secondary-color-selected: #6d727c; /* A deeper bronze-gold for hover/active states on secondary elements */
+  --tertiary-color: #ffb700;
 
 }
 @media (prefers-color-scheme: light) {
@@ -52,8 +53,6 @@
   --background-color: hwb(273 79% 0%); /* A deep slate-gray/purple for the background, creating focus */
   --text-color: #f9eff4; /* Clean white text for readability on dark backgrounds */
   --shadow-color: #ac66cc;
-  --secondary-color: #D4AF37; /* A luxurious gold for celebratory or accent elements */
-  --secondary-color-selected: #B38B00; /* A deeper bronze-gold for hover/active states on secondary elements */
 
   --primary-color: hsl(266, 70%, 79%); /* A vibrant, energizing purple for primary elements */
   --primary-color-selected: #411454; /* A rich, deep purple for selected or active states */
@@ -61,8 +60,6 @@
   --text-color: #1b082b; /* Deep slate-gray/purple for readability on light backgrounds */
   --shadow-color: rgba(0, 0, 0, 0.15); /* Soft, subtle shadow for depth on light mode */
   --contrast-shadow-color: var(--primary-color);
-  --secondary-color: #D4AF37; /* A luxurious gold for celebratory or accent elements */
-  --secondary-color-selected: #B38B00; /* A deeper bronze-gold for hover/active states on secondary elements */
 
 }
 }

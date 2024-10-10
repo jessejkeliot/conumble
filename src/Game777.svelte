@@ -8,6 +8,7 @@
   import Counter from "./Counter.svelte";
   import ButtonWithStack from "./ButtonWithStack.svelte";
   import Target from "./Target.svelte";
+  import { getTimeFromFirstConumble } from "./timeFunction";
   export let todaysQuestion: Question;
   export let questionIndex: number | null;
   const popupDispatch = createEventDispatcher();
@@ -63,6 +64,11 @@
         ? (gameState = 0) //totally lost
         : (gameState = 1) //attempt lost
       : (gameState = 2); //in play
+  let timeDiff: number = getTimeFromFirstConumble();
+  let index = Math.floor(timeDiff / 864e5); //daily
+  $: if(index.toString() != localStorage.getItem("lastQuestionPlayed")){
+    gameState=2;
+  }
   //colour of the count
   const eventColours = ["#E9210A", "#FF6700", "#262224", "#22DB31"];
   $: countColour = eventColours[gameState];
