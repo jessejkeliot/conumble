@@ -58,7 +58,7 @@
   --primary-color-selected: #411454; /* A rich, deep purple for selected or active states */
   --background-color: #f4f0fa; /* A soft, light lavender-tinted background to maintain the theme */
   --text-color: #1b082b; /* Deep slate-gray/purple for readability on light backgrounds */
-  --shadow-color: rgba(0, 0, 0, 0.15); /* Soft, subtle shadow for depth on light mode */
+  --shadow-color: #7e4a96; /* Soft, subtle shadow for depth on light mode */
   --contrast-shadow-color: var(--primary-color);
 
 }
