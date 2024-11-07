@@ -23,7 +23,7 @@
       navigator.share(sharedata);
     }
     navigator.clipboard.writeText(resultRepresentation);
-    buttonText = "copied! 🔗";
+    buttonText = "copied! x🔗";
   }
 </script>
 
