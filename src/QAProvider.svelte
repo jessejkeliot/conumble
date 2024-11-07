@@ -33,7 +33,7 @@
     console.log(viewportHeight);
   }
   async function loadCookies() {
-    playedToday = (await localStorage.getItem("playedToday")) == "true"; //comes back as a string bool
+    playedToday = localStorage.getItem("playedToday") == "true"; //comes back as a string bool
     if (playedToday == true) {
       console.log("Reloading Game State");
       startValue = Number(localStorage.getItem("currentCount"));

@@ -18,6 +18,10 @@
       });
   }
   function handleClick2() {
+    if(navigator.canShare()){
+      const sharedata = {text: resultRepresentation};
+      navigator.share(sharedata);
+    }
     navigator.clipboard.writeText(resultRepresentation);
     buttonText = "copied! 🔗";
   }
