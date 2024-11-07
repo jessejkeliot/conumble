@@ -19,7 +19,7 @@
   }
   function handleClick2() {
     if(navigator.canShare()){
-      const sharedata = {text: resultRepresentation};
+      const sharedata = {text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"};
       navigator.share(sharedata);
     }
     navigator.clipboard.writeText(resultRepresentation);
