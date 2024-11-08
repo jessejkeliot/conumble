@@ -18,7 +18,7 @@
       });
   }
   function handleClick2() {
-    if(navigator.canShare()){
+    if(navigator.canShare({text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"})){
       const sharedata = {text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"};
       navigator.share(sharedata);
     }
