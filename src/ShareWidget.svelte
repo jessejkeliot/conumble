@@ -18,11 +18,15 @@
       });
   }
   function handleClick2() {
-    if(navigator.canShare({text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"})){
-      const sharedata = {text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"};
-      navigator.share(sharedata);
+    // if(navigator.canShare({text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"})){
+    //   const sharedata = {text: resultRepresentation, title: "Conumble Results", url: "www.jessejkeliot.github.io/conumble/"};
+    //   navigator.share(sharedata);
+    // }
+    try {
+      navigator.share({text: resultRepresentation, title: "Conumble Results"});
+    } catch (error) {
+      navigator.clipboard.writeText(resultRepresentation);
     }
-    navigator.clipboard.writeText(resultRepresentation);
     buttonText = "copied! 🔗";
   }
 </script>
