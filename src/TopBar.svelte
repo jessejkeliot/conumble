@@ -6,7 +6,7 @@
   <div class="griditem" id="accordion">⚜️</div>
 </div> -->
 
-<script>
+<script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
@@ -19,7 +19,9 @@
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="griditem" id="help" on:click={onClickHelp}>?</div>
-  <div class="griditem" id="title">conumble</div>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class="griditem" id="title" on:click={()=>location.reload()}>conumble</div>
   <div class="griditem" id="accordion">◉</div>
 </div>
 
