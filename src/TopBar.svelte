@@ -63,6 +63,7 @@
     font-weight: 400;
     font-style: normal;    
     margin-bottom: 5px;
+    cursor: pointer;
   }
   #accordion {
     margin-right: 0.1em;
